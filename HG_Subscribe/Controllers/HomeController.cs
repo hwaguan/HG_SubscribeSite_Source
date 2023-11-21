@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace HG_Subscribe.Controllers
 {
@@ -26,5 +27,12 @@ namespace HG_Subscribe.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public void Greeting(string name)
+        {
+            Response.Write(String.Format("Hellow {0}", name));
+        }
+
     }
 }
