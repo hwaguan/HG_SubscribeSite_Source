@@ -100,3 +100,6 @@ D:\Case\DotNet\HG_Subscribe\HG_Subscribe\bin\EntityFramework.xml
 D:\Case\DotNet\HG_Subscribe\HG_Subscribe\bin\EntityFramework.SqlServer.xml
 D:\Case\DotNet\HG_Subscribe\HG_Subscribe\bin\HGCryptor.pdb
 D:\Case\DotNet\HG_Subscribe\HG_Subscribe\bin\zh-Hant\EntityFramework.resources.dll
+D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.dll.config
+D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.dll
+D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.pdb

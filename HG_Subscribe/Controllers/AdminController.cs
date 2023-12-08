@@ -15,6 +15,12 @@ namespace HG_Subscribe.Controllers
         private static Cryptor cryptor = new Cryptor();
         private static Models.ClikGoEntities db = new Models.ClikGoEntities();
 
+        [HttpPost]
+        public string greeting(string name)
+        {
+            return "Hellow " + name;
+        }
+
         // GET: Admin
         [HttpPost]
         public string login(string account, string password, string token)
