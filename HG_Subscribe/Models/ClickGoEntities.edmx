@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="administrator">
+          <Key>
+            <PropertyRef Name="admID" />
+          </Key>
+          <Property Name="admID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="admCorp" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="admDep" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="admMail" Type="varchar" MaxLength="100" />
+          <Property Name="admExt" Type="varchar" MaxLength="10" />
+          <Property Name="admAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admAuthority" Type="varchar(max)" />
+          <Property Name="admEnabled" Type="int" Nullable="false" />
+          <Property Name="admCreateDate" Type="datetime" Nullable="false" />
+          <Property Name="admLastModify" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="ClikGoModelStoreContainer">
+          <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClikGoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="administrator">
+          <Key>
+            <PropertyRef Name="admID" />
+          </Key>
+          <Property Name="admID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="admCorp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admDep" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="admExt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="admAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admAuthority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="admEnabled" Type="Int32" Nullable="false" />
+          <Property Name="admCreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="admLastModify" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="administrator" EntityType="Self.administrator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClikGoModelStoreContainer" CdmEntityContainer="ClikGoEntities">
+          <EntitySetMapping Name="administrator">
+            <EntityTypeMapping TypeName="ClikGoModel.administrator">
+              <MappingFragment StoreEntitySet="administrator">
+                <ScalarProperty Name="admID" ColumnName="admID" />
+                <ScalarProperty Name="admName" ColumnName="admName" />
+                <ScalarProperty Name="admCorp" ColumnName="admCorp" />
+                <ScalarProperty Name="admDep" ColumnName="admDep" />
+                <ScalarProperty Name="admMail" ColumnName="admMail" />
+                <ScalarProperty Name="admExt" ColumnName="admExt" />
+                <ScalarProperty Name="admAccount" ColumnName="admAccount" />
+                <ScalarProperty Name="admPassword" ColumnName="admPassword" />
+                <ScalarProperty Name="admAuthority" ColumnName="admAuthority" />
+                <ScalarProperty Name="admEnabled" ColumnName="admEnabled" />
+                <ScalarProperty Name="admCreateDate" ColumnName="admCreateDate" />
+                <ScalarProperty Name="admLastModify" ColumnName="admLastModify" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

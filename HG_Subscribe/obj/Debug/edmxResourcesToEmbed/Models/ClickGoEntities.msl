@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClikGoModelStoreContainer" CdmEntityContainer="ClikGoEntities">
+    <EntitySetMapping Name="administrator">
+      <EntityTypeMapping TypeName="ClikGoModel.administrator">
+        <MappingFragment StoreEntitySet="administrator">
+          <ScalarProperty Name="admID" ColumnName="admID" />
+          <ScalarProperty Name="admName" ColumnName="admName" />
+          <ScalarProperty Name="admCorp" ColumnName="admCorp" />
+          <ScalarProperty Name="admDep" ColumnName="admDep" />
+          <ScalarProperty Name="admMail" ColumnName="admMail" />
+          <ScalarProperty Name="admExt" ColumnName="admExt" />
+          <ScalarProperty Name="admAccount" ColumnName="admAccount" />
+          <ScalarProperty Name="admPassword" ColumnName="admPassword" />
+          <ScalarProperty Name="admAuthority" ColumnName="admAuthority" />
+          <ScalarProperty Name="admEnabled" ColumnName="admEnabled" />
+          <ScalarProperty Name="admCreateDate" ColumnName="admCreateDate" />
+          <ScalarProperty Name="admLastModify" ColumnName="admLastModify" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

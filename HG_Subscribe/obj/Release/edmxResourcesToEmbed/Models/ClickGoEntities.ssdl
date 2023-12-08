@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="administrator">
+    <Key>
+      <PropertyRef Name="admID" />
+    </Key>
+    <Property Name="admID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="admName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="admCorp" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="admDep" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="admMail" Type="varchar" MaxLength="100" />
+    <Property Name="admExt" Type="varchar" MaxLength="10" />
+    <Property Name="admAccount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admAuthority" Type="varchar(max)" />
+    <Property Name="admEnabled" Type="int" Nullable="false" />
+    <Property Name="admCreateDate" Type="datetime" Nullable="false" />
+    <Property Name="admLastModify" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="ClikGoModelStoreContainer">
+    <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
