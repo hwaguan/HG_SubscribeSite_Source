@@ -1,8 +1,0 @@
-D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.dll.config
-D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.dll
-D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.pdb
-D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Debug\HG_Subscribe.csproj.AssemblyReference.cache
-D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Debug\HG_Subscribe.csproj.CoreCompileInputs.cache
-D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Debug\HG_Subscribe.csproj.CopyComplete
-D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Debug\HG_Subscribe.dll
-D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Debug\HG_Subscribe.pdb
