@@ -123,7 +123,9 @@ namespace HG_Subscribe.Controllers
 
             SB.Append("]");
 
+            result.result = SB.ToString().ToString() == "[]" ? false : true;
             result.message = JsonConvert.DeserializeObject(SB.ToString());
+            result.code = SB.ToString().ToString() == "[]" ? 0 : 200;
 
             return JsonConvert.SerializeObject(result);
         }
