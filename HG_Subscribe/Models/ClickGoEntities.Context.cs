@@ -26,5 +26,6 @@ namespace HG_Subscribe.Models
         }
     
         public virtual DbSet<administrator> administrator { get; set; }
+        public virtual DbSet<adminMenu> adminMenu { get; set; }
     }
 }

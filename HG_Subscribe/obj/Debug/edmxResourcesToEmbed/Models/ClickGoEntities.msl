@@ -4,6 +4,7 @@
     <EntitySetMapping Name="administrator">
       <EntityTypeMapping TypeName="ClikGoModel.administrator">
         <MappingFragment StoreEntitySet="administrator">
+          <ScalarProperty Name="admGroup" ColumnName="admGroup" />
           <ScalarProperty Name="admID" ColumnName="admID" />
           <ScalarProperty Name="admName" ColumnName="admName" />
           <ScalarProperty Name="admCorp" ColumnName="admCorp" />
@@ -16,6 +17,18 @@
           <ScalarProperty Name="admEnabled" ColumnName="admEnabled" />
           <ScalarProperty Name="admCreateDate" ColumnName="admCreateDate" />
           <ScalarProperty Name="admLastModify" ColumnName="admLastModify" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="adminMenu">
+      <EntityTypeMapping TypeName="ClikGoModel.adminMenu">
+        <MappingFragment StoreEntitySet="adminMenu">
+          <ScalarProperty Name="menuEnabled" ColumnName="menuEnabled" />
+          <ScalarProperty Name="menuOrder" ColumnName="menuOrder" />
+          <ScalarProperty Name="menuText" ColumnName="menuText" />
+          <ScalarProperty Name="menuName" ColumnName="menuName" />
+          <ScalarProperty Name="menuParent" ColumnName="menuParent" />
+          <ScalarProperty Name="menuID" ColumnName="menuID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

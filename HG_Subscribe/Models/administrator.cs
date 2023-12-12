@@ -26,5 +26,6 @@ namespace HG_Subscribe.Models
         public int admEnabled { get; set; }
         public System.DateTime admCreateDate { get; set; }
         public Nullable<System.DateTime> admLastModify { get; set; }
+        public int admGroup { get; set; }
     }
 }

@@ -12,12 +12,25 @@
     <Property Name="admExt" Type="varchar" MaxLength="10" />
     <Property Name="admAccount" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="admPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admGroup" Type="int" Nullable="false" />
     <Property Name="admAuthority" Type="varchar(max)" />
     <Property Name="admEnabled" Type="int" Nullable="false" />
     <Property Name="admCreateDate" Type="datetime" Nullable="false" />
     <Property Name="admLastModify" Type="datetime" />
   </EntityType>
+  <EntityType Name="adminMenu">
+    <Key>
+      <PropertyRef Name="menuID" />
+    </Key>
+    <Property Name="menuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menuParent" Type="int" Nullable="false" />
+    <Property Name="menuName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="menuText" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="menuOrder" Type="int" Nullable="false" />
+    <Property Name="menuEnabled" Type="int" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="ClikGoModelStoreContainer">
     <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
