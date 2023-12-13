@@ -60,7 +60,7 @@ namespace HG_Subscribe.Controllers
 
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
-            string authStr = "";
+            string authStr = mid > 0 ? "" : "all";
             var menuList = new ExpandoObject() as IDictionary<string, Object>;
             SB.Append("[");
 
@@ -70,12 +70,15 @@ namespace HG_Subscribe.Controllers
 
                 if (admin.Count > 0)
                 {
-                    authStr = admin[0].admAuthority;
+                    if (admin[0].admGroup > 0)
+                    {
+                        authStr = admin[0].admAuthority;
+                    }
+                    else
+                    {
+                        authStr = "all";
+                    }
                 }
-            }
-            else
-            {
-                authStr = "all";
             }
 
             var authArr = new List<int>();
