@@ -159,7 +159,7 @@ namespace HG_Subscribe.Controllers
         /// <returns></returns>
         /// <memo>2023-12-11 add by Blair</memo>
         [HttpPost]
-        public string getManagerPagenationInfo(string token)
+        public string getManagerTotal(string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
