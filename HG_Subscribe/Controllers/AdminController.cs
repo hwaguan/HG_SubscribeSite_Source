@@ -24,7 +24,14 @@ namespace HG_Subscribe.Controllers
             return "Hellow " + name;
         }
 
-        // GET: Admin
+        #region 管理者登入
+        /// <summary>
+        /// 管理者登入
+        /// </summary>
+        /// <param name="account">帳號</param>
+        /// <param name="password">密碼</param>
+        /// <param name="token">交易金鑰</param>
+        /// <returns></returns>
         [HttpPost]
         public string login(string account, string password, string token)
         {
@@ -42,12 +49,20 @@ namespace HG_Subscribe.Controllers
             {
                 result.result = true;
                 result.code = 200;
-                result.message = admin;
+                result.message = admin[0];
             }
 
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
 
+        #region 取得管理介面左側選單
+        /// <summary>
+        /// 取得管理介面左側選單
+        /// </summary>
+        /// <param name="mid">管理者ID</param>
+        /// <param name="token">交易金鑰</param>
+        /// <returns></returns>
         [HttpPost]
         public string getAdminMenu(int mid, string token)
         {
@@ -132,5 +147,75 @@ namespace HG_Subscribe.Controllers
 
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
+
+        #region 取得管理員列表
+        /// <summary>
+        /// 取得管理員列表
+        /// </summary>
+        /// <param name="token">交易金鑰</param>
+        /// <returns></returns>
+        [HttpPost]
+        public string getManagerList(string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            result.result = true;
+            result.code = 200;
+            result.message = db.administrator.ToList();
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+        #region 更新管理員(新增 / 更新)
+        /// <summary>
+        /// 更新管理員(新增 / 更新)
+        /// </summary>
+        /// <param name="dataStr">管理員資料字串</param>
+        /// <param name="token">交易金鑰</param>
+        /// <returns></returns>
+        [HttpPost]
+        public string updateManager(string dataStr, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            try
+            {
+                administrator managerModel = JsonConvert.DeserializeObject<administrator>(dataStr);
+
+                if (managerModel.admID == 0)
+                {
+                    db.administrator.Add(managerModel);
+                }
+                else
+                {
+                    db.Entry(managerModel).State = System.Data.Entity.EntityState.Modified;
+                }
+
+                db.SaveChanges();
+
+                result.result = true;
+                result.code = 200;
+                result.message = managerModel;
+            }
+            catch (Exception ex)
+            {
+                result.result = false;
+                result.code = -1;
+                result.message = ex.Message;
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
     }
 }

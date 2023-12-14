@@ -168,6 +168,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClickGoEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HGEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HGEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HGEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HGEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HGEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MITEM.cs">
+      <DependentUpon>HGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MUSER.cs">
+      <DependentUpon>HGEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +221,16 @@
       <DependentUpon>ClickGoEntities.edmx</DependentUpon>
       <LastGenOutput>ClickGoEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\HGEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HGEntities.edmx</DependentUpon>
+      <LastGenOutput>HGEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HGEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HGEntities.edmx</DependentUpon>
+      <LastGenOutput>HGEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -212,6 +243,13 @@
     </EntityDeploy>
     <Content Include="Models\ClickGoEntities.edmx.diagram">
       <DependentUpon>ClickGoEntities.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\HGEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HGEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HGEntities.edmx.diagram">
+      <DependentUpon>HGEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
