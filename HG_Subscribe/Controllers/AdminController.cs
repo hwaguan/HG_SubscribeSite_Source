@@ -32,6 +32,7 @@ namespace HG_Subscribe.Controllers
         /// <param name="password">密碼</param>
         /// <param name="token">交易金鑰</param>
         /// <returns></returns>
+        /// <memo>2023-12-11 add by Blair</memo>
         [HttpPost]
         public string login(string account, string password, string token)
         {
@@ -63,6 +64,7 @@ namespace HG_Subscribe.Controllers
         /// <param name="mid">管理者ID</param>
         /// <param name="token">交易金鑰</param>
         /// <returns></returns>
+        /// <memo>2023-12-11 add by Blair</memo>
         [HttpPost]
         public string getAdminMenu(int mid, string token)
         {
@@ -149,14 +151,15 @@ namespace HG_Subscribe.Controllers
         }
         #endregion
 
-        #region 取得管理員列表
+        #region 取得管理員資料總數
         /// <summary>
-        /// 取得管理員列表
+        /// 取得管理員資料總數
         /// </summary>
         /// <param name="token">交易金鑰</param>
         /// <returns></returns>
+        /// <memo>2023-12-11 add by Blair</memo>
         [HttpPost]
-        public string getManagerList(string token)
+        public string getManagerPagenationInfo(string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -166,7 +169,32 @@ namespace HG_Subscribe.Controllers
 
             result.result = true;
             result.code = 200;
-            result.message = db.administrator.ToList();
+            result.message = db.administrator.Count();
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+
+        #region 取得管理員列表
+        /// <summary>
+        /// 取得管理員列表
+        /// </summary>
+        /// <param name="token">交易金鑰</param>
+        /// <returns></returns>
+        /// <memo>2023-12-14 add by Blair</memo>
+        [HttpPost]
+        public string getManagerList(int page, int rows, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            result.result = true;
+            result.code = 200;
+            result.message = db.administrator.Skip((page - 1) * rows).Take(rows);
 
             return JsonConvert.SerializeObject(result);
         }
@@ -179,6 +207,7 @@ namespace HG_Subscribe.Controllers
         /// <param name="dataStr">管理員資料字串</param>
         /// <param name="token">交易金鑰</param>
         /// <returns></returns>
+        /// <memo>2023-12-14 add by Blair</memo>
         [HttpPost]
         public string updateManager(string dataStr, string token)
         {

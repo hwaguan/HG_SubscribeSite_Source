@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Case\DotNet\HG_Subscribe_Release</_PublishTargetUrl>
-    <History>True|2023-12-14T01:48:13.6678580Z;True|2023-12-13T09:09:34.5543022+08:00;True|2023-12-13T08:50:21.2553845+08:00;True|2023-12-13T08:48:13.3719819+08:00;True|2023-12-13T08:47:31.3021823+08:00;True|2023-12-13T08:45:48.4389486+08:00;True|2023-12-13T08:31:06.0344145+08:00;True|2023-12-12T17:29:04.0355566+08:00;True|2023-12-12T10:29:35.9565441+08:00;True|2023-12-08T17:58:24.7635976+08:00;True|2023-12-08T09:52:53.9175335+08:00;True|2023-12-08T08:46:29.3078396+08:00;True|2023-12-08T08:25:24.0886899+08:00;True|2023-12-07T18:06:25.9300212+08:00;</History>
+    <History>True|2023-12-14T02:52:14.9666752Z;True|2023-12-14T09:48:13.6678580+08:00;True|2023-12-13T09:09:34.5543022+08:00;True|2023-12-13T08:50:21.2553845+08:00;True|2023-12-13T08:48:13.3719819+08:00;True|2023-12-13T08:47:31.3021823+08:00;True|2023-12-13T08:45:48.4389486+08:00;True|2023-12-13T08:31:06.0344145+08:00;True|2023-12-12T17:29:04.0355566+08:00;True|2023-12-12T10:29:35.9565441+08:00;True|2023-12-08T17:58:24.7635976+08:00;True|2023-12-08T09:52:53.9175335+08:00;True|2023-12-08T08:46:29.3078396+08:00;True|2023-12-08T08:25:24.0886899+08:00;True|2023-12-07T18:06:25.9300212+08:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/08/2023 09:51:40</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.dll">
-      <publishTime>12/14/2023 09:48:13</publishTime>
+      <publishTime>12/14/2023 10:51:57</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.pdb">
-      <publishTime>12/14/2023 09:48:13</publishTime>
+      <publishTime>12/14/2023 10:51:57</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
