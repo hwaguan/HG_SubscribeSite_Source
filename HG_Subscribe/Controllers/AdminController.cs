@@ -26,6 +26,50 @@ namespace HG_Subscribe.Controllers
             return "Hellow " + name;
         }
 
+        #region 取得所有員工
+        [HttpPost]
+        public string getAllEmployees(string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            List<empObj> empList = new List<empObj>();
+
+            var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate != null).Select(u => new {u.U_Num, u.U_Name, u.ComID, u.U_MDEP, u.EMail}).Distinct().OrderBy(u => u.ComID).ToList();
+
+            foreach (var item in mUSERs)
+            {
+                empObj emp= new empObj();
+
+                emp.empNo = item.U_Num;
+                emp.empName = item.U_Name;
+                emp.empBranch = item.ComID;
+                emp.empDep = item.U_MDEP;
+                emp.empMail = item.EMail;
+
+                empList.Add(emp);
+            }
+
+            result.result = true;
+            result.code = 200;
+            result.message = empList;
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        private class empObj
+        {
+            public string empNo { get; set; }
+            public string empName { get; set; }
+            public string empBranch { get; set; }
+            public string empDep { get; set; }
+
+            public string empMail { get; set; }
+        }
+        #endregion
+
         #region 取得組織結構
         /// <summary>
         /// 取得組織結構
