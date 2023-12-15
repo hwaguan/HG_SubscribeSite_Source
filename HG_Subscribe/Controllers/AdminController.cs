@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Http.Results;
 using System.Web.Mvc;
+using System.Xml;
 
 namespace HG_Subscribe.Controllers
 {
@@ -17,6 +18,7 @@ namespace HG_Subscribe.Controllers
     {
         private static Cryptor cryptor = new Cryptor();
         private static Models.ClikGoEntities db = new Models.ClikGoEntities();
+        private static Models.HGEntities dbHG = new Models.HGEntities();
 
         [HttpPost]
         public string greeting(string name)
@@ -175,7 +177,6 @@ namespace HG_Subscribe.Controllers
         }
         #endregion
 
-
         #region 取得管理員列表
         /// <summary>
         /// 取得管理員列表
@@ -191,12 +192,70 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
 
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+            List<managerEngity> mList = new List<managerEngity>();
+
+            List<administrator> admList = db.administrator.OrderBy(m => m.admID).Skip((page - 1) * rows).Take(rows).ToList();
+
+            admList.ForEach(adm =>
+            {
+                managerEngity mEntity = new managerEngity();
+
+                MUSER hgUser = dbHG.MUSER.Where(u => u.U_Num == adm.admNo && u.LeaveDate == null).OrderByDescending(u => u.add_Date).FirstOrDefault();
+                string Com = dbHG.MITEM.Where(i => i.mitcode == "COMID" && i.ditcode == hgUser.ComID).FirstOrDefault().ddesc;
+                string Dep = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == hgUser.U_MDEP).FirstOrDefault().ddesc;
+                string Title = dbHG.MITEM.Where(i => i.mitcode == "POSIT" && i.ditcode == hgUser.U_POSITION).FirstOrDefault().ddesc;
+                adminGroup AG = db.adminGroup.Where(g => g.authCode == adm.admGroup).FirstOrDefault();
+                string GroupName = AG.authText;
+                string menuAuth = AG.authMenuAuth;
+                string funcAuth = AG.authFuncAuth;
+
+                mEntity.ID = adm.admID;
+                mEntity.name = adm.admName;
+                mEntity.No = adm.admNo;
+                mEntity.Title = Title;
+                mEntity.Co = Com;
+                mEntity.Dep = Dep;
+                mEntity.Account = cryptor.decryptData(adm.admAccount);
+                mEntity.AccEncrypt = adm.admAccount;
+                mEntity.Password = cryptor.decryptData(adm.admPassword);
+                mEntity.PswEncrypt = adm.admPassword;
+                mEntity.Email = adm.admMail;
+                mEntity.Ext = adm.admExt;
+                mEntity.AuthGroup = adm.admGroup;
+                mEntity.AuthGroupName = GroupName;
+                //mEntity.MenuAuth = adm.admGroup > 0 ? adm.admAuthority?.Split(',')?.Select(Int32.Parse)?.ToList() : null;
+                mEntity.MenuAuth = menuAuth != null ? menuAuth.Split(',').ToList() : null;
+                mEntity.FuncAuth = funcAuth != null ? funcAuth.Split(',').ToList() : null;
+
+                mList.Add(mEntity);
+            });
 
             result.result = true;
             result.code = 200;
-            result.message = db.administrator.Skip((page - 1) * rows).Take(rows);
+            result.message = mList;
 
             return JsonConvert.SerializeObject(result);
+        }
+
+        private class managerEngity
+        {
+            public int ID { get; set; }
+            public string name { get; set; }
+            public string No { get; set; }
+            public string Title { get; set; }
+            public string Co { get; set; }
+            public string Dep { get; set; }
+            public string Account { get; set; }
+            public string AccEncrypt { get; set; }
+            public string Password { get; set; }
+            public string PswEncrypt { get; set; }
+            public string Email { get; set; }
+            public string Ext { get; set; }
+            public List<string> MenuAuth { get; set; }
+            public List<string> FuncAuth { get; set; }
+            public int AuthGroup { get; set; }
+            public string AuthGroupName { get; set; }
+
         }
         #endregion
 

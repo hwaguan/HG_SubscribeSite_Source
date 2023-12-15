@@ -15,6 +15,7 @@ namespace HG_Subscribe.Models
     public partial class administrator
     {
         public int admID { get; set; }
+        public string admNo { get; set; }
         public string admName { get; set; }
         public string admCorp { get; set; }
         public string admDep { get; set; }
@@ -22,10 +23,10 @@ namespace HG_Subscribe.Models
         public string admExt { get; set; }
         public string admAccount { get; set; }
         public string admPassword { get; set; }
+        public int admGroup { get; set; }
         public string admAuthority { get; set; }
         public int admEnabled { get; set; }
-        public System.DateTime admCreateDate { get; set; }
-        public Nullable<System.DateTime> admLastModify { get; set; }
-        public int admGroup { get; set; }
+        public string admCreateDate { get; set; }
+        public string admLastModify { get; set; }
     }
 }

@@ -147,6 +147,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\adminGroup.cs">
+      <DependentUpon>ClickGoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\administrator.cs">
       <DependentUpon>ClickGoEntities.tt</DependentUpon>
     </Compile>
@@ -182,6 +185,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HGEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\member.cs">
+      <DependentUpon>ClickGoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MITEM.cs">
       <DependentUpon>HGEntities.tt</DependentUpon>

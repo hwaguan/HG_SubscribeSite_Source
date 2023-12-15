@@ -5,8 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bd0d6935bb904cfdb69d1b4b984ce14c" Name="Diagram1">
-        <EntityTypeShape EntityType="ClikGoModel.administrator" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClikGoModel.adminMenu" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClikGoModel.adminGroup" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ClikGoModel.member" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClikGoModel.administrator" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

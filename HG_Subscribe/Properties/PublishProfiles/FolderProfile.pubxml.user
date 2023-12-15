@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Case\DotNet\HG_Subscribe_Release</_PublishTargetUrl>
-    <History>True|2023-12-14T02:54:52.8208298Z;True|2023-12-14T10:52:14.9666752+08:00;True|2023-12-14T09:48:13.6678580+08:00;True|2023-12-13T09:09:34.5543022+08:00;True|2023-12-13T08:50:21.2553845+08:00;True|2023-12-13T08:48:13.3719819+08:00;True|2023-12-13T08:47:31.3021823+08:00;True|2023-12-13T08:45:48.4389486+08:00;True|2023-12-13T08:31:06.0344145+08:00;True|2023-12-12T17:29:04.0355566+08:00;True|2023-12-12T10:29:35.9565441+08:00;True|2023-12-08T17:58:24.7635976+08:00;True|2023-12-08T09:52:53.9175335+08:00;True|2023-12-08T08:46:29.3078396+08:00;True|2023-12-08T08:25:24.0886899+08:00;True|2023-12-07T18:06:25.9300212+08:00;</History>
+    <History>True|2023-12-15T04:41:24.8723195Z;True|2023-12-14T15:26:10.2058737+08:00;True|2023-12-14T15:19:05.6060665+08:00;True|2023-12-14T14:30:21.7508840+08:00;True|2023-12-14T11:27:13.5915885+08:00;True|2023-12-14T11:16:06.3567956+08:00;True|2023-12-14T11:12:11.4432100+08:00;True|2023-12-14T11:02:06.3264736+08:00;True|2023-12-14T10:54:52.8208298+08:00;True|2023-12-14T10:52:14.9666752+08:00;True|2023-12-14T09:48:13.6678580+08:00;True|2023-12-13T09:09:34.5543022+08:00;True|2023-12-13T08:50:21.2553845+08:00;True|2023-12-13T08:48:13.3719819+08:00;True|2023-12-13T08:47:31.3021823+08:00;True|2023-12-13T08:45:48.4389486+08:00;True|2023-12-13T08:31:06.0344145+08:00;True|2023-12-12T17:29:04.0355566+08:00;True|2023-12-12T10:29:35.9565441+08:00;True|2023-12-08T17:58:24.7635976+08:00;True|2023-12-08T09:52:53.9175335+08:00;True|2023-12-08T08:46:29.3078396+08:00;True|2023-12-08T08:25:24.0886899+08:00;True|2023-12-07T18:06:25.9300212+08:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/08/2023 09:51:40</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.dll">
-      <publishTime>12/14/2023 10:54:34</publishTime>
+      <publishTime>12/15/2023 12:40:54</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.pdb">
-      <publishTime>12/14/2023 10:54:34</publishTime>
+      <publishTime>12/15/2023 12:40:54</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
@@ -361,7 +361,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/07/2023 16:36:28</publishTime>
     </File>
     <File Include="Models/ClickGoEntities.edmx.diagram">
-      <publishTime>12/12/2023 10:31:43</publishTime>
+      <publishTime>12/14/2023 15:18:25</publishTime>
     </File>
     <File Include="Models/HGEntities.edmx.diagram">
       <publishTime>12/14/2023 09:47:09</publishTime>

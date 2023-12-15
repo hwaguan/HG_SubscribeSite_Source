@@ -1,26 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ClikGoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="administrator">
-    <Key>
-      <PropertyRef Name="admID" />
-    </Key>
-    <Property Name="admID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="admName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="admCorp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="admDep" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="admMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="admExt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="admAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="admPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="admAuthority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="admEnabled" Type="Int32" Nullable="false" />
-    <Property Name="admCreateDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="admLastModify" Type="DateTime" Precision="3" />
-    <Property Name="admGroup" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="administrator" EntityType="Self.administrator" />
     <EntitySet Name="adminMenu" EntityType="ClikGoModel.adminMenu" />
+    <EntitySet Name="adminGroup" EntityType="ClikGoModel.adminGroup" />
+    <EntitySet Name="member" EntityType="ClikGoModel.member" />
+    <EntitySet Name="administrator" EntityType="ClikGoModel.administrator" />
   </EntityContainer>
   <EntityType Name="adminMenu">
     <Key>
@@ -32,5 +16,64 @@
     <Property Name="menuText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="menuOrder" Type="Int32" Nullable="false" />
     <Property Name="menuEnabled" Type="Int32" Nullable="false" />
+    <Property Name="menuCreateDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="menuLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="adminGroup">
+    <Key>
+      <PropertyRef Name="authID" />
+    </Key>
+    <Property Name="authID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="authCode" Type="Int32" Nullable="false" />
+    <Property Name="authText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="authEnabled" Type="Int32" Nullable="false" />
+    <Property Name="authMenuAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="authFuncAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="authCreateDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="authLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="member">
+    <Key>
+      <PropertyRef Name="mID" />
+    </Key>
+    <Property Name="mID" Type="Int32" Nullable="false" />
+    <Property Name="mName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mSocialSecurityCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mGender" Type="Int32" Nullable="false" />
+    <Property Name="mTelHome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mTelOffice" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mTelOfficeExt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mMail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mZip" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="mAddressCity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mAddressArea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mAddressRest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mCreditCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mCreditCardExp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mCreditCardCVV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mEnabled" Type="Int32" Nullable="false" />
+    <Property Name="mAddDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="administrator">
+    <Key>
+      <PropertyRef Name="admID" />
+    </Key>
+    <Property Name="admID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="admNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="admName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="admCorp" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="admDep" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="admMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="admExt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="admAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="admPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="admGroup" Type="Int32" Nullable="false" />
+    <Property Name="admAuthority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="admEnabled" Type="Int32" Nullable="false" />
+    <Property Name="admCreateDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="admLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

@@ -1,34 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ClikGoModelStoreContainer" CdmEntityContainer="ClikGoEntities">
-    <EntitySetMapping Name="administrator">
-      <EntityTypeMapping TypeName="ClikGoModel.administrator">
-        <MappingFragment StoreEntitySet="administrator">
-          <ScalarProperty Name="admGroup" ColumnName="admGroup" />
-          <ScalarProperty Name="admID" ColumnName="admID" />
-          <ScalarProperty Name="admName" ColumnName="admName" />
-          <ScalarProperty Name="admCorp" ColumnName="admCorp" />
-          <ScalarProperty Name="admDep" ColumnName="admDep" />
-          <ScalarProperty Name="admMail" ColumnName="admMail" />
-          <ScalarProperty Name="admExt" ColumnName="admExt" />
-          <ScalarProperty Name="admAccount" ColumnName="admAccount" />
-          <ScalarProperty Name="admPassword" ColumnName="admPassword" />
-          <ScalarProperty Name="admAuthority" ColumnName="admAuthority" />
-          <ScalarProperty Name="admEnabled" ColumnName="admEnabled" />
-          <ScalarProperty Name="admCreateDate" ColumnName="admCreateDate" />
-          <ScalarProperty Name="admLastModify" ColumnName="admLastModify" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="adminMenu">
       <EntityTypeMapping TypeName="ClikGoModel.adminMenu">
         <MappingFragment StoreEntitySet="adminMenu">
+          <ScalarProperty Name="menuLastModify" ColumnName="menuLastModify" />
+          <ScalarProperty Name="menuCreateDate" ColumnName="menuCreateDate" />
           <ScalarProperty Name="menuEnabled" ColumnName="menuEnabled" />
           <ScalarProperty Name="menuOrder" ColumnName="menuOrder" />
           <ScalarProperty Name="menuText" ColumnName="menuText" />
           <ScalarProperty Name="menuName" ColumnName="menuName" />
           <ScalarProperty Name="menuParent" ColumnName="menuParent" />
           <ScalarProperty Name="menuID" ColumnName="menuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="adminGroup">
+      <EntityTypeMapping TypeName="ClikGoModel.adminGroup">
+        <MappingFragment StoreEntitySet="adminGroup">
+          <ScalarProperty Name="authLastModify" ColumnName="authLastModify" />
+          <ScalarProperty Name="authCreateDate" ColumnName="authCreateDate" />
+          <ScalarProperty Name="authFuncAuth" ColumnName="authFuncAuth" />
+          <ScalarProperty Name="authMenuAuth" ColumnName="authMenuAuth" />
+          <ScalarProperty Name="authEnabled" ColumnName="authEnabled" />
+          <ScalarProperty Name="authText" ColumnName="authText" />
+          <ScalarProperty Name="authCode" ColumnName="authCode" />
+          <ScalarProperty Name="authID" ColumnName="authID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="member">
+      <EntityTypeMapping TypeName="ClikGoModel.member">
+        <MappingFragment StoreEntitySet="member">
+          <ScalarProperty Name="mLastModify" ColumnName="mLastModify" />
+          <ScalarProperty Name="mAddDate" ColumnName="mAddDate" />
+          <ScalarProperty Name="mEnabled" ColumnName="mEnabled" />
+          <ScalarProperty Name="mCreditCardCVV" ColumnName="mCreditCardCVV" />
+          <ScalarProperty Name="mCreditCardExp" ColumnName="mCreditCardExp" />
+          <ScalarProperty Name="mCreditCardNo" ColumnName="mCreditCardNo" />
+          <ScalarProperty Name="mAddressRest" ColumnName="mAddressRest" />
+          <ScalarProperty Name="mAddressArea" ColumnName="mAddressArea" />
+          <ScalarProperty Name="mAddressCity" ColumnName="mAddressCity" />
+          <ScalarProperty Name="mZip" ColumnName="mZip" />
+          <ScalarProperty Name="mMail" ColumnName="mMail" />
+          <ScalarProperty Name="mMobile" ColumnName="mMobile" />
+          <ScalarProperty Name="mTelOfficeExt" ColumnName="mTelOfficeExt" />
+          <ScalarProperty Name="mTelOffice" ColumnName="mTelOffice" />
+          <ScalarProperty Name="mTelHome" ColumnName="mTelHome" />
+          <ScalarProperty Name="mGender" ColumnName="mGender" />
+          <ScalarProperty Name="mSocialSecurityCode" ColumnName="mSocialSecurityCode" />
+          <ScalarProperty Name="mBirthday" ColumnName="mBirthday" />
+          <ScalarProperty Name="mName" ColumnName="mName" />
+          <ScalarProperty Name="mID" ColumnName="mID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="administrator">
+      <EntityTypeMapping TypeName="ClikGoModel.administrator">
+        <MappingFragment StoreEntitySet="administrator">
+          <ScalarProperty Name="admLastModify" ColumnName="admLastModify" />
+          <ScalarProperty Name="admCreateDate" ColumnName="admCreateDate" />
+          <ScalarProperty Name="admEnabled" ColumnName="admEnabled" />
+          <ScalarProperty Name="admAuthority" ColumnName="admAuthority" />
+          <ScalarProperty Name="admGroup" ColumnName="admGroup" />
+          <ScalarProperty Name="admPassword" ColumnName="admPassword" />
+          <ScalarProperty Name="admAccount" ColumnName="admAccount" />
+          <ScalarProperty Name="admExt" ColumnName="admExt" />
+          <ScalarProperty Name="admMail" ColumnName="admMail" />
+          <ScalarProperty Name="admDep" ColumnName="admDep" />
+          <ScalarProperty Name="admCorp" ColumnName="admCorp" />
+          <ScalarProperty Name="admName" ColumnName="admName" />
+          <ScalarProperty Name="admNo" ColumnName="admNo" />
+          <ScalarProperty Name="admID" ColumnName="admID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
