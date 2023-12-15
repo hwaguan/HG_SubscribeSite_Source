@@ -40,7 +40,7 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
-            List<MITEM> depList = dbHG.MITEM.Where(c => c.mitcode == "DEPAR" && c.del_tag == "0").ToList();
+            List<MITEM> depList = dbHG.MITEM.Where(c => c.mitcode == "DEPAR" && c.del_tag == "0" && c.ditcode != "0000").ToList();
             List<depObj> resultList = new List<depObj>();
 
             foreach (var dp in depList)
