@@ -26,6 +26,47 @@ namespace HG_Subscribe.Controllers
             return "Hellow " + name;
         }
 
+        #region 取得組織結構
+        /// <summary>
+        /// 取得組織結構
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public string getDepartmentTree(string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            List<MITEM> depList = dbHG.MITEM.Where(c => c.mitcode == "DEPAR" && c.del_tag == "0").ToList();
+            List<depObj> resultList = new List<depObj>();
+
+            foreach (var dp in depList)
+            {
+                depObj dep = new depObj();
+
+                dep.depNo = dp.ditcode;
+                dep.depText = dp.ddesc;
+
+                resultList.Add(dep);
+            }
+
+            result.result = true;
+            result.code = 200;
+            result.message = resultList;
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        private class depObj
+        {
+            public string depNo { get; set; }
+            public string depText { get; set; }
+        }
+        #endregion
+
         #region 管理者登入
         /// <summary>
         /// 管理者登入
