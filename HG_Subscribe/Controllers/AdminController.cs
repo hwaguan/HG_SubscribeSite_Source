@@ -37,7 +37,7 @@ namespace HG_Subscribe.Controllers
 
             List<empObj> empList = new List<empObj>();
 
-            var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate != null).Select(u => new {u.U_Num, u.U_Name, u.ComID, u.U_MDEP, u.EMail}).Distinct().OrderBy(u => u.ComID).ToList();
+            var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate == null && u.del_tag == "0" && u.U_Tel != "").Select(u => new {u.U_Num, u.U_Name, u.ComID, u.U_MDEP, u.EMail}).Distinct().OrderBy(u => u.ComID).ToList();
 
             foreach (var item in mUSERs)
             {
