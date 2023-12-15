@@ -31,7 +31,7 @@ namespace HG_Subscribe.Controllers
         /// 取得組織結構
         /// </summary>
         /// <param name="token"></param>
-        /// <returns></returns>
+        /// <returns>交易金鑰</returns>
         [HttpPost]
         public string getDepartmentTree(string token)
         {
