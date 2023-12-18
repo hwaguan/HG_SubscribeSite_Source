@@ -43,7 +43,7 @@ namespace HG_Subscribe.Controllers
             {
                 empObj emp= new empObj();
 
-                var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP).FirstOrDefault();
+                var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP && i.ditcode == "DEPAR").FirstOrDefault();
 
                 emp.empNo = item.U_Num;
                 emp.empName = item.U_Name;
