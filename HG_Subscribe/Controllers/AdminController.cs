@@ -37,7 +37,7 @@ namespace HG_Subscribe.Controllers
 
             List<empObj> empList = new List<empObj>();
 
-            var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate == null && u.del_tag == "0" && u.U_Tel != "").Select(u => new {u.U_Num, u.U_Name, u.ComID, u.U_MDEP, u.EMail}).Distinct().OrderBy(u => u.ComID).ToList();
+            var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate == null && u.del_tag == "0" && u.U_Tel != "").Select(u => new {u.U_Num, u.U_Name, u.U_Tel, u.ComID, u.U_MDEP, u.EMail}).Distinct().OrderBy(u => u.ComID).ToList();
 
             foreach (var item in mUSERs)
             {
@@ -50,6 +50,7 @@ namespace HG_Subscribe.Controllers
                 emp.empBranch = item.ComID;
                 emp.empDep = item.U_MDEP;
                 emp.empDepName = mDep.ddesc;
+                emp.empExt = item.U_Tel;
                 emp.empMail = item.EMail;
 
                 empList.Add(emp);
@@ -68,8 +69,8 @@ namespace HG_Subscribe.Controllers
             public string empName { get; set; }
             public string empBranch { get; set; }
             public string empDep { get; set; }
-
             public string empDepName { get; set; }
+            public string empExt { get; set; }
             public string empMail { get; set; }
         }
         #endregion
