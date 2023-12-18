@@ -100,3 +100,6 @@ D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Release\HG_Subscribe.csproj.CoreCom
 D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Release\HG_Subscribe.csproj.CopyComplete
 D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Release\HG_Subscribe.dll
 D:\Case\DotNet\HG_Subscribe\HG_Subscribe\obj\Release\HG_Subscribe.pdb
+D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.dll.config
+D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.dll
+D:\Case\DotNet\HG_Subscribe_Release\HG_Subscribe.pdb
