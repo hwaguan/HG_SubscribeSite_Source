@@ -43,10 +43,13 @@ namespace HG_Subscribe.Controllers
             {
                 empObj emp= new empObj();
 
+                var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP).FirstOrDefault();
+
                 emp.empNo = item.U_Num;
                 emp.empName = item.U_Name;
                 emp.empBranch = item.ComID;
                 emp.empDep = item.U_MDEP;
+                emp.empDepName = mDep.ddesc;
                 emp.empMail = item.EMail;
 
                 empList.Add(emp);
@@ -66,6 +69,7 @@ namespace HG_Subscribe.Controllers
             public string empBranch { get; set; }
             public string empDep { get; set; }
 
+            public string empDepName { get; set; }
             public string empMail { get; set; }
         }
         #endregion
