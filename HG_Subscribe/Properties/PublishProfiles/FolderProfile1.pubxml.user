@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <History>True|2023-12-18T07:14:39.7738157Z;False|2023-12-18T15:14:15.8954418+08:00;</History>
+    <History>True|2023-12-18T07:32:10.6755773Z;False|2023-12-18T15:31:51.7293520+08:00;True|2023-12-18T15:14:39.7738157+08:00;False|2023-12-18T15:14:15.8954418+08:00;</History>
     <LastFailureDetails />
     <_PublishTargetUrl>D:\Case\DotNet\HG_Subscribe_Release</_PublishTargetUrl>
   </PropertyGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/08/2023 09:51:40</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.dll">
-      <publishTime>12/18/2023 15:14:38</publishTime>
+      <publishTime>12/18/2023 15:32:09</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.pdb">
-      <publishTime>12/18/2023 15:14:38</publishTime>
+      <publishTime>12/18/2023 15:32:09</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
