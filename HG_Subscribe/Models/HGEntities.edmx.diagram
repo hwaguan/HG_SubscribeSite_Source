@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f806a1293a754492867d1530fe3b3fc3" Name="Diagram1">
+      <Diagram DiagramId="943c08dc4a664a12a7202a3f4bb95380" Name="Diagram1">
         <EntityTypeShape EntityType="HGModel.MITEM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HGModel.MUSER" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>

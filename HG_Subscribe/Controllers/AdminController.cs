@@ -5,12 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Web;
-using System.Web.Helpers;
-using System.Web.Http.Results;
 using System.Web.Mvc;
-using System.Xml;
 
 namespace HG_Subscribe.Controllers
 {
@@ -42,7 +41,7 @@ namespace HG_Subscribe.Controllers
 
             foreach (var item in mUSERs)
             {
-                empObj emp= new empObj();
+                empObj emp = new empObj();
 
                 var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP && i.mitcode == "DEPAR").FirstOrDefault();
 
@@ -214,7 +213,7 @@ namespace HG_Subscribe.Controllers
                 List<adminMenu> subMenu = db.adminMenu.Where(m => m.menuParent == adminMenu.menuID).OrderBy(m => m.menuOrder).ToList();
                 if (authStr != "" && authStr != "all") subMenu = subMenu.Where(m => authArr.Contains(m.menuID)).ToList();
 
-                    if (subMenu.Count > 0)
+                if (subMenu.Count > 0)
                 {
                     int subMenuItems = 0;
 
@@ -286,7 +285,6 @@ namespace HG_Subscribe.Controllers
             List<managerEngity> mList = new List<managerEngity>();
 
             List<administrator> admList = db.administrator.OrderBy(m => m.admID).Skip((page - 1) * rows).Take(rows).ToList();
-
             admList.ForEach(adm =>
             {
                 managerEngity mEntity = new managerEngity();

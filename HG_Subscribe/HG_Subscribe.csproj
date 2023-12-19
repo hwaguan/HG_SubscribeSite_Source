@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5FFBB12F-0FB6-4411-BF77-5EB49DD5C823}</ProjectGuid>
+    <ProjectGuid>{0ACECC11-FE48-4EE5-9599-68217D945471}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44367</IISExpressSSLPort>
+    <IISExpressSSLPort>44392</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\HG_Subscribe_Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\HG_Subscribe_Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,9 +55,6 @@
       <HintPath>..\..\HGCryptor\HGCryptor\bin\Release\HGCryptor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -113,6 +110,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -123,6 +123,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -219,8 +222,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\ClickGoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ClickGoEntities.Context.cs</LastGenOutput>
       <DependentUpon>ClickGoEntities.edmx</DependentUpon>
+      <LastGenOutput>ClickGoEntities.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ClickGoEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -229,8 +232,8 @@
     </Content>
     <Content Include="Models\HGEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HGEntities.edmx</DependentUpon>
       <LastGenOutput>HGEntities.Context.cs</LastGenOutput>
+      <DependentUpon>HGEntities.edmx</DependentUpon>
     </Content>
     <Content Include="Models\HGEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -243,19 +246,19 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ClickGoEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClickGoEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ClickGoEntities.edmx.diagram">
-      <DependentUpon>ClickGoEntities.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\HGEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HGEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\HGEntities.edmx.diagram">
       <DependentUpon>HGEntities.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ClickGoEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClickGoEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ClickGoEntities.edmx.diagram">
+      <DependentUpon>ClickGoEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -316,6 +319,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
@@ -334,9 +340,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4755</DevelopmentServerPort>
+          <DevelopmentServerPort>11261</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44367/</IISUrl>
+          <IISUrl>https://localhost:44392/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
