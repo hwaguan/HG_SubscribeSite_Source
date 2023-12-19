@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MITEM">
+    <Key>
+      <PropertyRef Name="auto_id" />
+    </Key>
+    <Property Name="auto_id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mitcode" Type="varchar" MaxLength="10" />
+    <Property Name="ditcode" Type="varchar" MaxLength="10" />
+    <Property Name="ddesc" Type="varchar" MaxLength="50" />
+    <Property Name="rank" Type="char" MaxLength="2" />
+    <Property Name="FaxNum" Type="varchar" MaxLength="11" />
+    <Property Name="View_tag" Type="char" MaxLength="1" />
+    <Property Name="Fax_tag" Type="char" MaxLength="1" />
+    <Property Name="Sys_tag" Type="char" MaxLength="1" />
+    <Property Name="Product_tag" Type="varchar" MaxLength="10" />
+    <Property Name="del_tag" Type="char" MaxLength="1" />
+    <Property Name="add_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MUSER">
+    <Key>
+      <PropertyRef Name="U_id" />
+    </Key>
+    <Property Name="U_id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="U_Num" Type="varchar" MaxLength="10" />
+    <Property Name="Tag" Type="char" MaxLength="1" />
+    <Property Name="U_Pwd" Type="char" MaxLength="20" />
+    <Property Name="U_Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="U_EName" Type="nvarchar" MaxLength="20" />
+    <Property Name="U_MDEP" Type="varchar" MaxLength="10" />
+    <Property Name="T_MDEP" Type="varchar" MaxLength="50" />
+    <Property Name="U_Leader" Type="varchar" MaxLength="8" />
+    <Property Name="U_LeaderName" Type="varchar" MaxLength="20" />
+    <Property Name="U_LeaderCom" Type="varchar" MaxLength="5" />
+    <Property Name="U_Agent" Type="varchar" MaxLength="8" />
+    <Property Name="U_AgentName" Type="varchar" MaxLength="20" />
+    <Property Name="U_AgentCom" Type="varchar" MaxLength="5" />
+    <Property Name="U_Card" Type="varchar" MaxLength="6" />
+    <Property Name="U_Tel" Type="varchar" MaxLength="4" />
+    <Property Name="U_PID" Type="varchar" MaxLength="10" />
+    <Property Name="Punchcard_tag" Type="char" MaxLength="1" />
+    <Property Name="PaySheet_tag" Type="char" MaxLength="1" />
+    <Property Name="BirthDayDate" Type="datetime" />
+    <Property Name="School_name1" Type="varchar" MaxLength="20" />
+    <Property Name="School_Dep1" Type="varchar" MaxLength="20" />
+    <Property Name="School_Grd1" Type="varchar" MaxLength="10" />
+    <Property Name="School_name2" Type="varchar" MaxLength="20" />
+    <Property Name="School_Dep2" Type="varchar" MaxLength="20" />
+    <Property Name="School_Grd2" Type="varchar" MaxLength="10" />
+    <Property Name="School_name3" Type="varchar" MaxLength="20" />
+    <Property Name="School_Dep3" Type="varchar" MaxLength="20" />
+    <Property Name="School_Grd3" Type="varchar" MaxLength="10" />
+    <Property Name="Be_Com1" Type="varchar" MaxLength="30" />
+    <Property Name="Be_Job1" Type="varchar" MaxLength="10" />
+    <Property Name="Be_Res1" Type="varchar" MaxLength="50" />
+    <Property Name="Be_Date1" Type="varchar" MaxLength="20" />
+    <Property Name="Be_Leave1" Type="varchar" MaxLength="20" />
+    <Property Name="Be_Salary1" Type="varchar" MaxLength="10" />
+    <Property Name="Be_Com2" Type="varchar" MaxLength="30" />
+    <Property Name="Be_Job2" Type="varchar" MaxLength="10" />
+    <Property Name="Be_Res2" Type="varchar" MaxLength="50" />
+    <Property Name="Be_Date2" Type="varchar" MaxLength="20" />
+    <Property Name="Be_Leave2" Type="varchar" MaxLength="20" />
+    <Property Name="Be_Salary2" Type="varchar" MaxLength="10" />
+    <Property Name="Be_Com3" Type="varchar" MaxLength="30" />
+    <Property Name="Be_Job3" Type="varchar" MaxLength="10" />
+    <Property Name="Be_Res3" Type="varchar" MaxLength="50" />
+    <Property Name="Be_Date3" Type="varchar" MaxLength="20" />
+    <Property Name="Be_Leave3" Type="varchar" MaxLength="20" />
+    <Property Name="Be_Salary3" Type="varchar" MaxLength="10" />
+    <Property Name="License_I" Type="char" MaxLength="1" />
+    <Property Name="License_A" Type="char" MaxLength="1" />
+    <Property Name="License_Detial" Type="ntext" />
+    <Property Name="OCity" Type="varchar" MaxLength="10" />
+    <Property Name="OTown" Type="varchar" MaxLength="15" />
+    <Property Name="OZipCode" Type="varchar" MaxLength="5" />
+    <Property Name="OAddress" Type="varchar" MaxLength="40" />
+    <Property Name="HCity" Type="varchar" MaxLength="10" />
+    <Property Name="HTown" Type="varchar" MaxLength="15" />
+    <Property Name="HZipCode" Type="varchar" MaxLength="5" />
+    <Property Name="HAddress" Type="varchar" MaxLength="30" />
+    <Property Name="HTel_Zone" Type="varchar" MaxLength="2" />
+    <Property Name="HTel" Type="varchar" MaxLength="10" />
+    <Property Name="HMobile" Type="varchar" MaxLength="10" />
+    <Property Name="EName" Type="varchar" MaxLength="20" />
+    <Property Name="EMobile" Type="varchar" MaxLength="10" />
+    <Property Name="ETel_Zone" Type="varchar" MaxLength="2" />
+    <Property Name="ETel" Type="varchar" MaxLength="10" />
+    <Property Name="PayrollBankID" Type="varchar" MaxLength="5" />
+    <Property Name="PayrollBankName" Type="varchar" MaxLength="15" />
+    <Property Name="PayrollBranchName" Type="varchar" MaxLength="50" />
+    <Property Name="EMail" Type="varchar" MaxLength="30" />
+    <Property Name="U_POSITION" Type="varchar" MaxLength="10" />
+    <Property Name="ComID" Type="varchar" MaxLength="10" />
+    <Property Name="ComLand" Type="varchar" MaxLength="10" />
+    <Property Name="U_Item" Type="varchar" MaxLength="20" />
+    <Property Name="SlimDate" Type="datetime" />
+    <Property Name="LeaveDate" Type="datetime" />
+    <Property Name="Note" Type="ntext" />
+    <Property Name="Sign_tag" Type="char" MaxLength="1" />
+    <Property Name="MG_Sort" Type="char" MaxLength="2" />
+    <Property Name="Sale_Continuous" Type="varbinary" MaxLength="3" />
+    <Property Name="Fuc_open_Tag" Type="char" MaxLength="1" />
+    <Property Name="MTRAT_COUNT" Type="varchar" MaxLength="5" />
+    <Property Name="RepList_tag" Type="char" MaxLength="1" />
+    <Property Name="Marital_tag" Type="varchar" MaxLength="5" />
+    <Property Name="Children" Type="varchar" MaxLength="1" />
+    <Property Name="del_tag" Type="char" MaxLength="1" />
+    <Property Name="add_Date" Type="datetime" />
+    <Property Name="add_User" Type="varchar" MaxLength="10" />
+    <Property Name="add_ip" Type="varchar" MaxLength="20" />
+    <Property Name="edit_Date" Type="datetime" />
+    <Property Name="edit_User" Type="varchar" MaxLength="10" />
+    <Property Name="edit_ip" Type="varchar" MaxLength="20" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="EditUser" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="HGModelStoreContainer">
+    <EntitySet Name="MITEM" EntityType="Self.MITEM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MUSER" EntityType="Self.MUSER" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
