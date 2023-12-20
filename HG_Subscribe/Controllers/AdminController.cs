@@ -75,6 +75,7 @@ namespace HG_Subscribe.Controllers
             public string empDepName { get; set; }
             public string empExt { get; set; }
             public string empMail { get; set; }
+            public string[] empAuth { get; set; }
         }
         #endregion
 
@@ -352,6 +353,7 @@ namespace HG_Subscribe.Controllers
         #endregion
 
         #region 取得特定管理員
+        [HttpPost]
         public string getAdminManager(int mid, string token)
         {
             //驗證交易金鑰
@@ -365,6 +367,7 @@ namespace HG_Subscribe.Controllers
             administrator admData = db.administrator.Where(a => a.admID == mid).FirstOrDefault();
 
             string depName = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == admData.admDep).Select(i => i.ddesc).FirstOrDefault();
+            string[] authArr = admData.admAuthority == "" ? new string[0] : admData.admAuthority.Split(',');
 
             admObj.empID = mid;
             admObj.empNo = admData.admNo;
@@ -374,6 +377,7 @@ namespace HG_Subscribe.Controllers
             admObj.empDepName = depName;
             admObj.empExt = admData.admExt;
             admObj.empMail = admData.admMail;
+            admObj.empAuth = authArr;
 
             result.result = true;
             result.code = 200;
