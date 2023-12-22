@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Case\DotNet\HG_Subscribe_Release</_PublishTargetUrl>
-    <History>True|2023-12-22T08:01:28.6983162Z;True|2023-12-22T15:19:02.8001645+08:00;True|2023-12-21T11:11:34.9077806+08:00;True|2023-12-20T15:29:50.5502791+08:00;True|2023-12-20T14:25:57.3647495+08:00;True|2023-12-19T17:50:24.4796382+08:00;True|2023-12-19T17:46:51.2725665+08:00;True|2023-12-19T17:29:35.0318987+08:00;</History>
+    <History>True|2023-12-22T10:02:13.9164899Z;True|2023-12-22T18:01:29.8651307+08:00;True|2023-12-22T16:01:28.6983162+08:00;True|2023-12-22T15:19:02.8001645+08:00;True|2023-12-21T11:11:34.9077806+08:00;True|2023-12-20T15:29:50.5502791+08:00;True|2023-12-20T14:25:57.3647495+08:00;True|2023-12-19T17:50:24.4796382+08:00;True|2023-12-19T17:46:51.2725665+08:00;True|2023-12-19T17:29:35.0318987+08:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/08/2023 09:51:40</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.dll">
-      <publishTime>12/22/2023 16:01:28</publishTime>
+      <publishTime>12/22/2023 18:02:13</publishTime>
     </File>
     <File Include="bin/HG_Subscribe.pdb">
-      <publishTime>12/22/2023 16:01:28</publishTime>
+      <publishTime>12/22/2023 18:02:13</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>

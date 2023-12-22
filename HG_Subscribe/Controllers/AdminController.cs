@@ -452,5 +452,25 @@ namespace HG_Subscribe.Controllers
             return JsonConvert.SerializeObject(result);
         }
         #endregion
+
+        #region 比對管理群組名稱是否重複
+        [HttpPost]
+        public string verifyGroupName(int groupid, string groupName, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            bool verifyResult = db.adminAuthGroup.Where(g => g.agID != groupid && g.agName == groupName).Count() > 0;
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            result.result = true;
+            result.code = verifyResult ? 666 : 200;
+            result.message = verifyResult ? "No" : "Ok";
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
     }
 }
