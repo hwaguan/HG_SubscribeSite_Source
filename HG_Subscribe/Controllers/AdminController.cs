@@ -211,7 +211,8 @@ namespace HG_Subscribe.Controllers
             {
                 SB.Append(SB.ToString() != "[" ? "," : "");
                 SB.Append("{");
-                SB.Append("'Action':'" + adminMenu.menuName + "'");
+                SB.Append("'ID':'" + adminMenu.menuID + "'");
+                SB.Append(",'Action':'" + adminMenu.menuName + "'");
                 SB.Append(",'Text':'" + adminMenu.menuText + "'");
 
                 List<adminMenu> subMenu = db.adminMenu.Where(m => m.menuParent == adminMenu.menuID).OrderBy(m => m.menuOrder).ToList();
@@ -227,7 +228,8 @@ namespace HG_Subscribe.Controllers
                     {
                         SB.Append(subMenuItems > 0 ? "," : "");
                         SB.Append("{");
-                        SB.Append("'Action':'" + sMenu.menuName + "'");
+                        SB.Append("'Action':'" + sMenu.menuID + "'");
+                        SB.Append(",'Action':'" + sMenu.menuName + "'");
                         SB.Append(",'Text':'" + sMenu.menuText + "'");
                         SB.Append("}");
                         subMenuItems++;
@@ -297,10 +299,6 @@ namespace HG_Subscribe.Controllers
                 string Com = dbHG.MITEM.Where(i => i.mitcode == "COMID" && i.ditcode == hgUser.ComID).FirstOrDefault().ddesc;
                 string Dep = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == hgUser.U_MDEP).FirstOrDefault().ddesc;
                 string Title = dbHG.MITEM.Where(i => i.mitcode == "POSIT" && i.ditcode == hgUser.U_POSITION).FirstOrDefault().ddesc;
-                adminGroup AG = db.adminGroup.Where(g => g.authCode == adm.admGroup).FirstOrDefault();
-                string GroupName = AG.authText;
-                string menuAuth = AG.authMenuAuth;
-                string funcAuth = AG.authFuncAuth;
 
                 mEntity.ID = adm.admID;
                 mEntity.name = adm.admName;
@@ -315,10 +313,6 @@ namespace HG_Subscribe.Controllers
                 mEntity.Email = adm.admMail;
                 mEntity.Ext = adm.admExt;
                 mEntity.AuthGroup = adm.admGroup;
-                mEntity.AuthGroupName = GroupName;
-                //mEntity.MenuAuth = adm.admGroup > 0 ? adm.admAuthority?.Split(',')?.Select(Int32.Parse)?.ToList() : null;
-                mEntity.MenuAuth = menuAuth != null ? menuAuth.Split(',').ToList() : null;
-                mEntity.FuncAuth = funcAuth != null ? funcAuth.Split(',').ToList() : null;
 
                 mList.Add(mEntity);
             });
@@ -344,10 +338,9 @@ namespace HG_Subscribe.Controllers
             public string PswEncrypt { get; set; }
             public string Email { get; set; }
             public string Ext { get; set; }
-            public List<string> MenuAuth { get; set; }
-            public List<string> FuncAuth { get; set; }
             public int AuthGroup { get; set; }
             public string AuthGroupName { get; set; }
+            public string AuthContent { get; set; }
 
         }
         #endregion
@@ -367,7 +360,7 @@ namespace HG_Subscribe.Controllers
             administrator admData = db.administrator.Where(a => a.admID == mid).FirstOrDefault();
 
             string depName = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == admData.admDep).Select(i => i.ddesc).FirstOrDefault();
-            string[] authArr = admData.admAuthority == "" ? new string[0] : admData.admAuthority.Split(',');
+            string[] authArr = admData.admAuthority == ""  || admData.admAuthority == null ? new string[0] : admData.admAuthority.Split(',');
 
             admObj.empID = mid;
             admObj.empNo = admData.admNo;
