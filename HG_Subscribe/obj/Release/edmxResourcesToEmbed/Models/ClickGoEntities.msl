@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ClikGoModelStoreContainer" CdmEntityContainer="ClikGoEntities">
-    <EntitySetMapping Name="adminGroup">
-      <EntityTypeMapping TypeName="ClikGoModel.adminGroup">
-        <MappingFragment StoreEntitySet="adminGroup">
-          <ScalarProperty Name="authID" ColumnName="authID" />
-          <ScalarProperty Name="authCode" ColumnName="authCode" />
-          <ScalarProperty Name="authText" ColumnName="authText" />
-          <ScalarProperty Name="authEnabled" ColumnName="authEnabled" />
-          <ScalarProperty Name="authMenuAuth" ColumnName="authMenuAuth" />
-          <ScalarProperty Name="authFuncAuth" ColumnName="authFuncAuth" />
-          <ScalarProperty Name="authCreateDate" ColumnName="authCreateDate" />
-          <ScalarProperty Name="authLastModify" ColumnName="authLastModify" />
+    <EntitySetMapping Name="adminAuthGroup">
+      <EntityTypeMapping TypeName="ClikGoModel.adminAuthGroup">
+        <MappingFragment StoreEntitySet="adminAuthGroup">
+          <ScalarProperty Name="agID" ColumnName="agID" />
+          <ScalarProperty Name="agName" ColumnName="agName" />
+          <ScalarProperty Name="agRank" ColumnName="agRank" />
+          <ScalarProperty Name="agContent" ColumnName="agContent" />
+          <ScalarProperty Name="agCreateDate" ColumnName="agCreateDate" />
+          <ScalarProperty Name="agLastModify" ColumnName="agLastModify" />
+          <ScalarProperty Name="agEnabled" ColumnName="agEnabled" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

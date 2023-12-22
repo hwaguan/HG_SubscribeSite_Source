@@ -12,15 +12,14 @@ namespace HG_Subscribe.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class adminGroup
+    public partial class adminAuthGroup
     {
-        public int authID { get; set; }
-        public int authCode { get; set; }
-        public string authText { get; set; }
-        public int authEnabled { get; set; }
-        public string authMenuAuth { get; set; }
-        public string authFuncAuth { get; set; }
-        public string authCreateDate { get; set; }
-        public string authLastModify { get; set; }
+        public int agID { get; set; }
+        public string agName { get; set; }
+        public int agRank { get; set; }
+        public string agContent { get; set; }
+        public string agCreateDate { get; set; }
+        public string agLastModify { get; set; }
+        public int agEnabled { get; set; }
     }
 }

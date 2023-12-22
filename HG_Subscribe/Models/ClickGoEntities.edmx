@@ -5,18 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="adminGroup">
+        <EntityType Name="adminAuthGroup">
           <Key>
-            <PropertyRef Name="authID" />
+            <PropertyRef Name="agID" />
           </Key>
-          <Property Name="authID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="authCode" Type="int" Nullable="false" />
-          <Property Name="authText" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="authEnabled" Type="int" Nullable="false" />
-          <Property Name="authMenuAuth" Type="varchar(max)" />
-          <Property Name="authFuncAuth" Type="varchar(max)" />
-          <Property Name="authCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="authLastModify" Type="varchar" MaxLength="20" />
+          <Property Name="agID" Type="int" Nullable="false" />
+          <Property Name="agName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="agRank" Type="int" Nullable="false" />
+          <Property Name="agContent" Type="varchar(max)" Nullable="false" />
+          <Property Name="agCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="agLastModify" Type="varchar" MaxLength="20" />
+          <Property Name="agEnabled" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="administrator">
           <Key>
@@ -76,7 +75,7 @@
           <Property Name="mLastModify" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityContainer Name="ClikGoModelStoreContainer">
-          <EntitySet Name="adminGroup" EntityType="Self.adminGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
@@ -86,18 +85,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClikGoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="adminGroup">
+        <EntityType Name="adminAuthGroup">
           <Key>
-            <PropertyRef Name="authID" />
+            <PropertyRef Name="agID" />
           </Key>
-          <Property Name="authID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="authCode" Type="Int32" Nullable="false" />
-          <Property Name="authText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="authEnabled" Type="Int32" Nullable="false" />
-          <Property Name="authMenuAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="authFuncAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="authCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="authLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="agID" Type="Int32" Nullable="false" />
+          <Property Name="agName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="agRank" Type="Int32" Nullable="false" />
+          <Property Name="agContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="agCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="agLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="agEnabled" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="administrator">
           <Key>
@@ -157,7 +155,7 @@
           <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="adminGroup" EntityType="Self.adminGroup" />
+          <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
           <EntitySet Name="administrator" EntityType="Self.administrator" />
           <EntitySet Name="adminMenu" EntityType="Self.adminMenu" />
           <EntitySet Name="member" EntityType="Self.member" />
@@ -168,17 +166,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClikGoModelStoreContainer" CdmEntityContainer="ClikGoEntities">
-          <EntitySetMapping Name="adminGroup">
-            <EntityTypeMapping TypeName="ClikGoModel.adminGroup">
-              <MappingFragment StoreEntitySet="adminGroup">
-                <ScalarProperty Name="authID" ColumnName="authID" />
-                <ScalarProperty Name="authCode" ColumnName="authCode" />
-                <ScalarProperty Name="authText" ColumnName="authText" />
-                <ScalarProperty Name="authEnabled" ColumnName="authEnabled" />
-                <ScalarProperty Name="authMenuAuth" ColumnName="authMenuAuth" />
-                <ScalarProperty Name="authFuncAuth" ColumnName="authFuncAuth" />
-                <ScalarProperty Name="authCreateDate" ColumnName="authCreateDate" />
-                <ScalarProperty Name="authLastModify" ColumnName="authLastModify" />
+          <EntitySetMapping Name="adminAuthGroup">
+            <EntityTypeMapping TypeName="ClikGoModel.adminAuthGroup">
+              <MappingFragment StoreEntitySet="adminAuthGroup">
+                <ScalarProperty Name="agID" ColumnName="agID" />
+                <ScalarProperty Name="agName" ColumnName="agName" />
+                <ScalarProperty Name="agRank" ColumnName="agRank" />
+                <ScalarProperty Name="agContent" ColumnName="agContent" />
+                <ScalarProperty Name="agCreateDate" ColumnName="agCreateDate" />
+                <ScalarProperty Name="agLastModify" ColumnName="agLastModify" />
+                <ScalarProperty Name="agEnabled" ColumnName="agEnabled" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

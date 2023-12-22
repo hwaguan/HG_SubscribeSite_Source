@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="adminGroup">
+  <EntityType Name="adminAuthGroup">
     <Key>
-      <PropertyRef Name="authID" />
+      <PropertyRef Name="agID" />
     </Key>
-    <Property Name="authID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="authCode" Type="int" Nullable="false" />
-    <Property Name="authText" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="authEnabled" Type="int" Nullable="false" />
-    <Property Name="authMenuAuth" Type="varchar(max)" />
-    <Property Name="authFuncAuth" Type="varchar(max)" />
-    <Property Name="authCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="authLastModify" Type="varchar" MaxLength="20" />
+    <Property Name="agID" Type="int" Nullable="false" />
+    <Property Name="agName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="agRank" Type="int" Nullable="false" />
+    <Property Name="agContent" Type="varchar(max)" Nullable="false" />
+    <Property Name="agCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="agLastModify" Type="varchar" MaxLength="20" />
+    <Property Name="agEnabled" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="administrator">
     <Key>
@@ -71,7 +70,7 @@
     <Property Name="mLastModify" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityContainer Name="ClikGoModelStoreContainer">
-    <EntitySet Name="adminGroup" EntityType="Self.adminGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />

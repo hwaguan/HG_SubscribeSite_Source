@@ -25,7 +25,7 @@ namespace HG_Subscribe.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<adminGroup> adminGroup { get; set; }
+        public virtual DbSet<adminAuthGroup> adminAuthGroup { get; set; }
         public virtual DbSet<administrator> administrator { get; set; }
         public virtual DbSet<adminMenu> adminMenu { get; set; }
         public virtual DbSet<member> member { get; set; }

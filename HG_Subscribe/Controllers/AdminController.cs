@@ -360,7 +360,7 @@ namespace HG_Subscribe.Controllers
             administrator admData = db.administrator.Where(a => a.admID == mid).FirstOrDefault();
 
             string depName = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == admData.admDep).Select(i => i.ddesc).FirstOrDefault();
-            string[] authArr = admData.admAuthority == ""  || admData.admAuthority == null ? new string[0] : admData.admAuthority.Split(',');
+            string[] authArr = admData.admAuthority == "" || admData.admAuthority == null ? new string[0] : admData.admAuthority.Split(',');
 
             admObj.empID = mid;
             admObj.empNo = admData.admNo;
@@ -407,10 +407,10 @@ namespace HG_Subscribe.Controllers
                 }
                 else
                 {
-                    db.Entry(managerModel).State = System.Data.Entity.EntityState.Modified;
+                    //db.Entry(managerModel).State = System.Data.Entity.EntityState.Modified;
                 }
 
-                db.SaveChanges();
+                //db.SaveChanges();
 
                 result.result = true;
                 result.code = 200;
@@ -422,6 +422,32 @@ namespace HG_Subscribe.Controllers
                 result.code = -1;
                 result.message = ex.Message;
             }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+        #region 取得管理員群組
+        /// <summary>
+        /// 取得管理員群組
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="rows"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public string getGroupList(int page, int rows, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+            List<adminAuthGroup> agList = db.adminAuthGroup.OrderBy(g => g.agRank).Skip((page - 1) * rows).Take(rows).ToList();
+
+            result.result = true;
+            result.code = 200;
+            result.message = agList;
 
             return JsonConvert.SerializeObject(result);
         }

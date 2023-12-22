@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ClikGoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="adminGroup">
+  <EntityType Name="adminAuthGroup">
     <Key>
-      <PropertyRef Name="authID" />
+      <PropertyRef Name="agID" />
     </Key>
-    <Property Name="authID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="authCode" Type="Int32" Nullable="false" />
-    <Property Name="authText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="authEnabled" Type="Int32" Nullable="false" />
-    <Property Name="authMenuAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="authFuncAuth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="authCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="authLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="agID" Type="Int32" Nullable="false" />
+    <Property Name="agName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="agRank" Type="Int32" Nullable="false" />
+    <Property Name="agContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="agCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="agLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="agEnabled" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="administrator">
     <Key>
@@ -71,7 +70,7 @@
     <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="adminGroup" EntityType="Self.adminGroup" />
+    <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
     <EntitySet Name="administrator" EntityType="Self.administrator" />
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" />
     <EntitySet Name="member" EntityType="Self.member" />
