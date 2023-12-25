@@ -228,7 +228,7 @@ namespace HG_Subscribe.Controllers
                     {
                         SB.Append(subMenuItems > 0 ? "," : "");
                         SB.Append("{");
-                        SB.Append("'Action':'" + sMenu.menuID + "'");
+                        SB.Append("'ID':'" + sMenu.menuID + "'");
                         SB.Append(",'Action':'" + sMenu.menuName + "'");
                         SB.Append(",'Text':'" + sMenu.menuText + "'");
                         SB.Append("}");
