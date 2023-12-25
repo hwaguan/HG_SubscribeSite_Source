@@ -496,6 +496,7 @@ namespace HG_Subscribe.Controllers
             else
             {
                 AG.agCreateDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                AG.agEnabled = 1;
             }
 
             db.adminAuthGroup.AddOrUpdate(AG);
