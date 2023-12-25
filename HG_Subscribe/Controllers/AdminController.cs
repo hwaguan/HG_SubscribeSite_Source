@@ -489,7 +489,14 @@ namespace HG_Subscribe.Controllers
             AG.agRank = groupRank;
             AG.agContent = groupAuth;
 
-            if (groupID > 0) AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            if (groupID > 0)
+            {
+                AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            else
+            {
+                AG.agCreateDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            }
 
             db.adminAuthGroup.AddOrUpdate(AG);
 
