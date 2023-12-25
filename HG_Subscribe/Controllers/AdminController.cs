@@ -477,18 +477,19 @@ namespace HG_Subscribe.Controllers
 
         #region 更新管理群組(新增 / 更新
         [HttpPost]
-        public string updateAuthGroup(int gID, string gName, string gAuth, string token)
+        public string updateAuthGroup(int groupID, string groupName, int groupRank, string groupAuth, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
             if (!RC.result) return JsonConvert.SerializeObject(RC);
 
             adminAuthGroup AG = new adminAuthGroup();
-            AG.agID = gID;
-            AG.agName = gName;
-            AG.agContent = gAuth;
+            AG.agID = groupID;
+            AG.agName = groupName;
+            AG.agRank = groupRank;
+            AG.agContent = groupAuth;
 
-            if (gID > 0) AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            if (groupID > 0) AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             db.adminAuthGroup.AddOrUpdate(AG);
 
