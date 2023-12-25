@@ -213,7 +213,7 @@ namespace HG_Subscribe.Controllers
             {
                 SB.Append(SB.ToString() != "[" ? "," : "");
                 SB.Append("{");
-                SB.Append("'ID':'" + adminMenu.menuID + "'");
+                SB.Append("'ID':" + adminMenu.menuID);
                 SB.Append(",'Action':'" + adminMenu.menuName + "'");
                 SB.Append(",'Text':'" + adminMenu.menuText + "'");
 
@@ -230,7 +230,7 @@ namespace HG_Subscribe.Controllers
                     {
                         SB.Append(subMenuItems > 0 ? "," : "");
                         SB.Append("{");
-                        SB.Append("'ID':'" + sMenu.menuID + "'");
+                        SB.Append("'ID':" + sMenu.menuID);
                         SB.Append(",'Action':'" + sMenu.menuName + "'");
                         SB.Append(",'Text':'" + sMenu.menuText + "'");
                         SB.Append("}");
