@@ -477,7 +477,7 @@ namespace HG_Subscribe.Controllers
 
         #region 更新管理群組(新增 / 更新
         [HttpPost]
-        public string updateAuthGroup(int groupID, string groupName, int groupRank, string groupAuth, string token)
+        public string updateAuthGroup(int? groupID, string groupName, int groupRank, string groupAuth, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -490,7 +490,7 @@ namespace HG_Subscribe.Controllers
 
             if (groupID > 0)
             {
-                AG.agID = groupID;
+                AG.agID = (int)groupID;
                 AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             }
             else
