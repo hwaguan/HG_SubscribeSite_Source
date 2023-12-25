@@ -484,13 +484,13 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
 
             adminAuthGroup AG = new adminAuthGroup();
-            AG.agID = groupID;
             AG.agName = groupName;
             AG.agRank = groupRank;
             AG.agContent = groupAuth;
 
             if (groupID > 0)
             {
+                AG.agID = groupID;
                 AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             }
             else

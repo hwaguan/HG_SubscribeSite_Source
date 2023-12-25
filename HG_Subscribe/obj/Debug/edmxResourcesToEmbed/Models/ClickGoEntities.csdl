@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="agID" />
     </Key>
-    <Property Name="agID" Type="Int32" Nullable="false" />
+    <Property Name="agID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="agName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="agRank" Type="Int32" Nullable="false" />
     <Property Name="agContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
@@ -48,7 +48,7 @@
     <Key>
       <PropertyRef Name="mID" />
     </Key>
-    <Property Name="mID" Type="Int32" Nullable="false" />
+    <Property Name="mID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="mName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="mBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="mSocialSecurityCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
