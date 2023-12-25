@@ -512,5 +512,40 @@ namespace HG_Subscribe.Controllers
             return JsonConvert.SerializeObject(result);
         }
         #endregion
+
+        #region 刪除管理群
+        [HttpPost]
+        public string removeAuthGroup(int agID, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            adminAuthGroup adminGroupData = db.adminAuthGroup.Where(g => g.agID == agID).FirstOrDefault();
+
+            if (adminGroupData != null)
+            {
+                adminGroupData.agEnabled = 0;
+
+                db.Entry(adminGroupData).State = System.Data.Entity.EntityState.Modified;
+
+                db.SaveChanges();
+
+                result.result = true;
+                result.code = 200;
+                result.message = "Ok";
+            }
+            else
+            {
+                result.result = true;
+                result.code = 666;
+                result.message = "record not found";
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
     }
 }
