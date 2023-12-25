@@ -4,11 +4,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -468,6 +470,35 @@ namespace HG_Subscribe.Controllers
             result.result = true;
             result.code = verifyResult ? 666 : 200;
             result.message = verifyResult ? "No" : "Ok";
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+        #region 更新管理群組(新增 / 更新
+        [HttpPost]
+        public string updateAuthGroup(int gID, string gName, string gAuth, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            adminAuthGroup AG = new adminAuthGroup();
+            AG.agID = gID;
+            AG.agName = gName;
+            AG.agContent = gAuth;
+
+            if (gID > 0) AG.agLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            db.adminAuthGroup.AddOrUpdate(AG);
+
+            db.SaveChanges();
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            result.result = true;
+            result.code = 200;
+            result.message = "success";
 
             return JsonConvert.SerializeObject(result);
         }
