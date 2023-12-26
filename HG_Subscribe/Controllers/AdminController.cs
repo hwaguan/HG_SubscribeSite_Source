@@ -412,7 +412,6 @@ namespace HG_Subscribe.Controllers
                 administrator managerModel = new administrator();
                 if (empID > 0) managerModel = db.administrator.Where(a => a.admID == empID).FirstOrDefault();
 
-                managerModel.admID = empID;
                 managerModel.admNo = empNo;
                 managerModel.admName = empName;
                 managerModel.admCorp = empCo;
@@ -422,16 +421,18 @@ namespace HG_Subscribe.Controllers
                 managerModel.admGroup = empGroup;
                 managerModel.admAuthority = empAuth;
 
-                if (managerModel.admID == 0)
+                if(empID == 0)
                 {
                     managerModel.admAccount = cryptor.encryptData(empNo);
                     managerModel.admPassword = cryptor.encryptData(empPass);
                     managerModel.admEnabled = 1;
+                    managerModel.admCreateDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     db.administrator.Add(managerModel);
                 }
                 else
                 {
-                    if(empPass != "") managerModel.admPassword = cryptor.encryptData(empPass);
+                    managerModel.admID = empID;
+                    if (empPass != "") managerModel.admPassword = cryptor.encryptData(empPass);
                     managerModel.admLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     db.Entry(managerModel).State = System.Data.Entity.EntityState.Modified;
                 }

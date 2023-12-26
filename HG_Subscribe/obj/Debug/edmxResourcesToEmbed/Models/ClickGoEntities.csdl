@@ -23,7 +23,7 @@
     <Property Name="admDep" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="admMail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="admExt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="admAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="admAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="admPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="admGroup" Type="Int32" Nullable="false" />
     <Property Name="admAuthority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />

@@ -16,14 +16,14 @@
     <Key>
       <PropertyRef Name="admID" />
     </Key>
-    <Property Name="admID" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+    <Property Name="admID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="admNo" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="admName" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="admCorp" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="admDep" Type="varchar" MaxLength="4" Nullable="false" />
     <Property Name="admMail" Type="varchar" MaxLength="100" />
     <Property Name="admExt" Type="varchar" MaxLength="10" />
-    <Property Name="admAccount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admAccount" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="admPassword" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="admGroup" Type="int" Nullable="false" />
     <Property Name="admAuthority" Type="varchar(max)" />
@@ -35,7 +35,7 @@
     <Key>
       <PropertyRef Name="menuID" />
     </Key>
-    <Property Name="menuID" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+    <Property Name="menuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="menuParent" Type="int" Nullable="false" />
     <Property Name="menuName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="menuText" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -48,7 +48,7 @@
     <Key>
       <PropertyRef Name="mID" />
     </Key>
-    <Property Name="mID" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+    <Property Name="mID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="mName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="mBirthday" Type="varchar" MaxLength="50" />
     <Property Name="mSocialSecurityCode" Type="varchar" MaxLength="10" />
