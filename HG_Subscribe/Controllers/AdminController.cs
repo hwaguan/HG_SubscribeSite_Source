@@ -555,7 +555,7 @@ namespace HG_Subscribe.Controllers
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
             if (!RC.result) return JsonConvert.SerializeObject(RC);
 
-            adminAuthGroup AG = new adminAuthGroup();
+            adminAuthGroup AG = db.adminAuthGroup.Where(a => a.agID == groupID).FirstOrDefault();
             AG.agName = groupName;
             AG.agRank = groupRank;
             AG.agContent = groupAuth;
