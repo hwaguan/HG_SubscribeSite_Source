@@ -408,7 +408,7 @@ namespace HG_Subscribe.Controllers
             try
             {
                 administrator managerModel = new administrator();
-                if (managerModel.admID == 0) managerModel = db.administrator.Where(a => a.admID == empID).FirstOrDefault();
+                if (empID > 0) managerModel = db.administrator.Where(a => a.admID == empID).FirstOrDefault();
 
                 managerModel.admID = empID;
                 managerModel.admNo = empNo;
