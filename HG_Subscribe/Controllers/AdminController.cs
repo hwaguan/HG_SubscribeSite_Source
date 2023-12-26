@@ -217,7 +217,7 @@ namespace HG_Subscribe.Controllers
                 SB.Append(",'Action':'" + adminMenu.menuName + "'");
                 SB.Append(",'Text':'" + adminMenu.menuText + "'");
 
-                List<adminMenu> subMenu = db.adminMenu.Where(m => m.menuParent == adminMenu.menuID).OrderBy(m => m.menuOrder).ToList();
+                List<adminMenu> subMenu = db.adminMenu.Where(m => m.menuParent == adminMenu.menuID && m.menuEnabled > 0).OrderBy(m => m.menuOrder).ToList();
                 if (authStr != "" && authStr != "all") subMenu = subMenu.Where(m => authArr.Contains(m.menuID)).ToList();
 
                 if (subMenu.Count > 0)
