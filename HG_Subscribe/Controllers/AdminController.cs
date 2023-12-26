@@ -397,7 +397,7 @@ namespace HG_Subscribe.Controllers
         /// <returns></returns>
         /// <memo>2023-12-14 add by Blair</memo>
         [HttpPost]
-        public string updateManager(int empID, string empNo, string empName, string empCo, string empDep, string empExt, string empMail, int empGroup, string empAuth, bool empEnabled, string empPass, string token)
+        public string updateManager(int empID, string empNo, string empName, string empCo, string empDep, string empExt, string empMail, int empGroup, string empAuth, string empPass, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -417,6 +417,7 @@ namespace HG_Subscribe.Controllers
                 managerModel.admDep = empDep;
                 managerModel.admExt = empExt;
                 managerModel.admMail = empMail;
+                managerModel.admGroup = empGroup;
                 managerModel.admAuthority = empAuth;
 
                 if (managerModel.admID == 0)
