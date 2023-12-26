@@ -181,7 +181,7 @@ namespace HG_Subscribe.Controllers
 
             if (mid > 0)
             {
-                List<administrator> admin = db.administrator.Where(a => a.admID == mid).ToList();
+                List<administrator> admin = db.administrator.Where(a => a.admID == mid && a.admEnabled > 0).ToList();
 
                 if (admin.Count > 0)
                 {
@@ -202,11 +202,11 @@ namespace HG_Subscribe.Controllers
             if (authStr != "" && authStr != "all")
             {
                 authArr = authStr?.Split(',')?.Select(Int32.Parse)?.ToList();
-                menu = db.adminMenu.Where(m => authArr.Contains(m.menuID) && m.menuParent == 0).OrderBy(m => m.menuOrder).ToList();
+                menu = db.adminMenu.Where(m => authArr.Contains(m.menuID) && m.menuParent == 0 && m.menuEnabled > 0).OrderBy(m => m.menuOrder).ToList();
             }
             else
             {
-                if (authStr == "all") menu = db.adminMenu.Where(m => m.menuParent == 0).OrderBy(m => m.menuOrder).ToList();
+                if (authStr == "all") menu = db.adminMenu.Where(m => m.menuParent == 0 && m.menuEnabled > 0).OrderBy(m => m.menuOrder).ToList();
             }
 
             foreach (var adminMenu in menu)
