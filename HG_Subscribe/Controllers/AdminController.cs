@@ -81,6 +81,7 @@ namespace HG_Subscribe.Controllers
             public string empExt { get; set; }
             public string empMail { get; set; }
             public string[] empAuth { get; set; }
+            public int empEnabled { get; set; }
         }
         #endregion
 
@@ -396,7 +397,7 @@ namespace HG_Subscribe.Controllers
         /// <returns></returns>
         /// <memo>2023-12-14 add by Blair</memo>
         [HttpPost]
-        public string updateManager(string dataStr, string token)
+        public string updateManager(int empID, string empNo, string empName, string empCo, string empDep, string empExt, string empMail, int empGroup, string empAuth, bool empEnabled, string empPass, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -406,18 +407,33 @@ namespace HG_Subscribe.Controllers
 
             try
             {
-                administrator managerModel = JsonConvert.DeserializeObject<administrator>(dataStr);
+                administrator managerModel = new administrator();
+                if (managerModel.admID == 0) managerModel = db.administrator.Where(a => a.admID == empID).FirstOrDefault();
+
+                managerModel.admID = empID;
+                managerModel.admNo = empNo;
+                managerModel.admName = empName;
+                managerModel.admCorp = empCo;
+                managerModel.admDep = empDep;
+                managerModel.admExt = empExt;
+                managerModel.admMail = empMail;
+                managerModel.admAuthority = empAuth;
 
                 if (managerModel.admID == 0)
                 {
+                    managerModel.admAccount = cryptor.encryptData(empNo);
+                    managerModel.admPassword = cryptor.encryptData(empPass);
+                    managerModel.admEnabled = 1;
                     db.administrator.Add(managerModel);
                 }
                 else
                 {
-                    //db.Entry(managerModel).State = System.Data.Entity.EntityState.Modified;
+                    if(empPass != "") managerModel.admPassword = cryptor.encryptData(empPass);
+                    managerModel.admLastModify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    db.Entry(managerModel).State = System.Data.Entity.EntityState.Modified;
                 }
 
-                //db.SaveChanges();
+                db.SaveChanges();
 
                 result.result = true;
                 result.code = 200;
