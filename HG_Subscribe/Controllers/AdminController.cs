@@ -47,11 +47,14 @@ namespace HG_Subscribe.Controllers
             {
                 empObj emp = new empObj();
 
+                var mCo = dbHG.MITEM.Where(i => i.ditcode == item.ComID && i.mitcode == "COMID").FirstOrDefault();
                 var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP && i.mitcode == "DEPAR").FirstOrDefault();
 
                 emp.empNo = item.U_Num;
                 emp.empName = item.U_Name;
                 emp.empBranch = item.ComID;
+                emp.empCo = item.ComID;
+                emp.empCoName = mCo.ddesc;
                 emp.empDep = item.U_MDEP;
                 emp.empDepName = mDep.ddesc;
                 emp.empExt = item.U_Tel;
@@ -73,6 +76,8 @@ namespace HG_Subscribe.Controllers
             public string empNo { get; set; }
             public string empName { get; set; }
             public string empBranch { get; set; }
+            public string empCo { get; set; }
+            public string empCoName { get; set; }
             public string empDep { get; set; }
             public string empDepName { get; set; }
             public string empExt { get; set; }
