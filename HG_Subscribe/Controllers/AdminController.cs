@@ -80,6 +80,7 @@ namespace HG_Subscribe.Controllers
             public string empDepName { get; set; }
             public string empExt { get; set; }
             public string empMail { get; set; }
+            public int empGroup { get; set; }
             public string[] empAuth { get; set; }
             public int empEnabled { get; set; }
         }
@@ -378,6 +379,7 @@ namespace HG_Subscribe.Controllers
             admObj.empDepName = depName;
             admObj.empExt = admData.admExt;
             admObj.empMail = admData.admMail;
+            admObj.empGroup = admData.admGroup;
             admObj.empAuth = authArr;
 
             result.result = true;
