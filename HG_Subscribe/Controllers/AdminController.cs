@@ -315,7 +315,7 @@ namespace HG_Subscribe.Controllers
                 mEntity.Email = adm.admMail;
                 mEntity.Ext = adm.admExt;
                 mEntity.AuthGroup = adm.admGroup;
-                mEntity.enabled = adm.admEnabled > 0;
+                mEntity.enabled = adm.admEnabled;
 
                 mList.Add(mEntity);
             });
@@ -344,7 +344,7 @@ namespace HG_Subscribe.Controllers
             public int AuthGroup { get; set; }
             public string AuthGroupName { get; set; }
             public string AuthContent { get; set; }
-            public bool enabled { get; set; }
+            public int enabled { get; set; }
 
         }
         #endregion
