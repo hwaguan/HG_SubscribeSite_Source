@@ -259,7 +259,7 @@ namespace HG_Subscribe.Controllers
         /// <returns></returns>
         /// <memo>2023-12-11 add by Blair</memo>
         [HttpPost]
-        public string getManagerTotal(string token)
+        public string getManagerTotal(string token, bool showAll = false)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -269,7 +269,7 @@ namespace HG_Subscribe.Controllers
 
             result.result = true;
             result.code = 200;
-            result.message = db.administrator.Count();
+            result.message = showAll ? db.administrator.Count() : db.administrator.Where(a => a.admEnabled > 0).Count();
 
             return JsonConvert.SerializeObject(result);
         }
@@ -283,7 +283,7 @@ namespace HG_Subscribe.Controllers
         /// <returns></returns>
         /// <memo>2023-12-14 add by Blair</memo>
         [HttpPost]
-        public string getManagerList(int page, int rows, string token)
+        public string getManagerList(int page, int rows, string token, bool showAll = false)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -292,7 +292,7 @@ namespace HG_Subscribe.Controllers
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
             List<managerEngity> mList = new List<managerEngity>();
 
-            List<administrator> admList = db.administrator.OrderBy(m => m.admID).Skip((page - 1) * rows).Take(rows).ToList();
+            List<administrator> admList = showAll ? db.administrator.OrderBy(m => m.admID).Skip((page - 1) * rows).Take(rows).ToList() : db.administrator.Where(m => m.admEnabled > 0).OrderBy(m => m.admID).Skip((page - 1) * rows).Take(rows).ToList();
             admList.ForEach(adm =>
             {
                 managerEngity mEntity = new managerEngity();
@@ -438,14 +438,14 @@ namespace HG_Subscribe.Controllers
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpPost]
-        public string getGroupList(int page, int rows, string token)
+        public string getGroupList(int page, int rows, string token, bool showAll = false)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
             if (!RC.result) return JsonConvert.SerializeObject(RC);
 
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
-            List<adminAuthGroup> agList = db.adminAuthGroup.OrderBy(g => g.agRank).Skip((page - 1) * rows).Take(rows).ToList();
+            List<adminAuthGroup> agList = showAll ? db.adminAuthGroup.OrderBy(g => g.agRank).Skip((page - 1) * rows).Take(rows).ToList() : db.adminAuthGroup.Where(g => g.agEnabled > 0).OrderBy(g => g.agRank).Skip((page - 1) * rows).Take(rows).ToList();
 
             result.result = true;
             result.code = 200;
