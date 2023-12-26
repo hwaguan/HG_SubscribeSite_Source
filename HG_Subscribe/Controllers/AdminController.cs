@@ -429,6 +429,76 @@ namespace HG_Subscribe.Controllers
         }
         #endregion
 
+        #region 刪除管理員
+        [HttpPost]
+        public string removeManager(int aID, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            administrator adminData = db.administrator.Where(a => a.admID == aID).FirstOrDefault();
+
+            if (adminData != null)
+            {
+                adminData.admEnabled = 0;
+
+                db.Entry(adminData).State = System.Data.Entity.EntityState.Modified;
+
+                db.SaveChanges();
+
+                result.result = true;
+                result.code = 200;
+                result.message = "Ok";
+            }
+            else
+            {
+                result.result = true;
+                result.code = 666;
+                result.message = "record not found";
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+        #region 復原管理員
+        [HttpPost]
+        public string reviveManager(int aID, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            administrator adminData = db.administrator.Where(a => a.admID == aID).FirstOrDefault();
+
+            if (adminData != null)
+            {
+                adminData.admEnabled = 1;
+
+                db.Entry(adminData).State = System.Data.Entity.EntityState.Modified;
+
+                db.SaveChanges();
+
+                result.result = true;
+                result.code = 200;
+                result.message = "Ok";
+            }
+            else
+            {
+                result.result = true;
+                result.code = 666;
+                result.message = "record not found";
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
         #region 取得管理員群組
         /// <summary>
         /// 取得管理員群組
