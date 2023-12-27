@@ -8,7 +8,7 @@
     <Property Name="agName" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="agRank" Type="int" Nullable="false" />
     <Property Name="agContent" Type="varchar(max)" Nullable="false" />
-    <Property Name="agCreateDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="agCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="agLastModify" Type="varchar" MaxLength="20" />
     <Property Name="agEnabled" Type="int" Nullable="false" />
   </EntityType>
@@ -28,7 +28,7 @@
     <Property Name="admGroup" Type="int" Nullable="false" />
     <Property Name="admAuthority" Type="varchar(max)" />
     <Property Name="admEnabled" Type="int" Nullable="false" />
-    <Property Name="admCreateDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="admCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="admLastModify" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="adminMenu">
@@ -41,7 +41,7 @@
     <Property Name="menuText" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="menuOrder" Type="int" Nullable="false" />
     <Property Name="menuEnabled" Type="int" Nullable="false" />
-    <Property Name="menuCreateDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="menuCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="menuLastModify" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="member">
@@ -76,7 +76,7 @@
     <Property Name="mLineName" Type="nvarchar" MaxLength="50" />
     <Property Name="mLineIcon" Type="varchar" MaxLength="500" />
     <Property Name="mEnabled" Type="int" Nullable="false" />
-    <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="mLastModify" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityContainer Name="ClikGoModelStoreContainer">

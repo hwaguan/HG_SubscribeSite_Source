@@ -31,18 +31,18 @@ namespace HG_Subscribe.Models
         public string mCreditCardNo { get; set; }
         public string mCreditCardExp { get; set; }
         public string mCreditCardCVV { get; set; }
+        public string mPassword { get; set; }
+        public string mGoogleAccount { get; set; }
+        public string mGoogleName { get; set; }
+        public string mGoogleIcon { get; set; }
+        public string mFacebookAccount { get; set; }
+        public string mFacebookName { get; set; }
+        public string mFacebookIcon { get; set; }
+        public string mLineAccount { get; set; }
+        public string mLineName { get; set; }
+        public string mLineIcon { get; set; }
         public int mEnabled { get; set; }
         public string mAddDate { get; set; }
         public string mLastModify { get; set; }
-        public string mPassword { get; set; }
-        public string mGoogleAccount { get; set; }
-        public string mGoogleIcon { get; set; }
-        public string mFacebookAccount { get; set; }
-        public string mFacebookIcon { get; set; }
-        public string mLineAccount { get; set; }
-        public string mLineIcon { get; set; }
-        public string mGoogleName { get; set; }
-        public string mFacebookName { get; set; }
-        public string mLineName { get; set; }
     }
 }

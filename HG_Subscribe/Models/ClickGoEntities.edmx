@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="adminAuthGroup">
           <Key>
             <PropertyRef Name="agID" />
@@ -13,7 +13,7 @@
           <Property Name="agName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="agRank" Type="int" Nullable="false" />
           <Property Name="agContent" Type="varchar(max)" Nullable="false" />
-          <Property Name="agCreateDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="agCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="agLastModify" Type="varchar" MaxLength="20" />
           <Property Name="agEnabled" Type="int" Nullable="false" />
         </EntityType>
@@ -33,7 +33,7 @@
           <Property Name="admGroup" Type="int" Nullable="false" />
           <Property Name="admAuthority" Type="varchar(max)" />
           <Property Name="admEnabled" Type="int" Nullable="false" />
-          <Property Name="admCreateDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="admCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="admLastModify" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="adminMenu">
@@ -46,7 +46,7 @@
           <Property Name="menuText" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="menuOrder" Type="int" Nullable="false" />
           <Property Name="menuEnabled" Type="int" Nullable="false" />
-          <Property Name="menuCreateDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="menuCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="menuLastModify" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="member">
@@ -81,7 +81,7 @@
           <Property Name="mLineName" Type="nvarchar" MaxLength="50" />
           <Property Name="mLineIcon" Type="varchar" MaxLength="500" />
           <Property Name="mEnabled" Type="int" Nullable="false" />
-          <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="mLastModify" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityContainer Name="ClikGoModelStoreContainer">
@@ -90,7 +90,8 @@
           <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClikGoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -98,11 +99,11 @@
           <Key>
             <PropertyRef Name="agID" />
           </Key>
-          <Property Name="agID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="agID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="agName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="agRank" Type="Int32" Nullable="false" />
           <Property Name="agContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="agCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="agCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="agLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="agEnabled" Type="Int32" Nullable="false" />
         </EntityType>
@@ -110,7 +111,7 @@
           <Key>
             <PropertyRef Name="admID" />
           </Key>
-          <Property Name="admID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="admID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="admNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="admName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="admCorp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
@@ -122,27 +123,27 @@
           <Property Name="admGroup" Type="Int32" Nullable="false" />
           <Property Name="admAuthority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="admEnabled" Type="Int32" Nullable="false" />
-          <Property Name="admCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="admCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="admLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="adminMenu">
           <Key>
             <PropertyRef Name="menuID" />
           </Key>
-          <Property Name="menuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="menuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="menuParent" Type="Int32" Nullable="false" />
           <Property Name="menuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="menuText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="menuOrder" Type="Int32" Nullable="false" />
           <Property Name="menuEnabled" Type="Int32" Nullable="false" />
-          <Property Name="menuCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="menuCreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="menuLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="member">
           <Key>
             <PropertyRef Name="mID" />
           </Key>
-          <Property Name="mID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="mID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="mName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="mBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mSocialSecurityCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -159,19 +160,19 @@
           <Property Name="mCreditCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mCreditCardExp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mCreditCardCVV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="mEnabled" Type="Int32" Nullable="false" />
-          <Property Name="mAddDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="mPassword" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="mGoogleAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="mGoogleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mGoogleIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="mFacebookAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="mFacebookName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mFacebookIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="mLineAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="mLineIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="mGoogleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="mFacebookName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mLineIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mEnabled" Type="Int32" Nullable="false" />
+          <Property Name="mAddDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
@@ -235,16 +236,6 @@
           <EntitySetMapping Name="member">
             <EntityTypeMapping TypeName="ClikGoModel.member">
               <MappingFragment StoreEntitySet="member">
-                <ScalarProperty Name="mLineName" ColumnName="mLineName" />
-                <ScalarProperty Name="mFacebookName" ColumnName="mFacebookName" />
-                <ScalarProperty Name="mGoogleName" ColumnName="mGoogleName" />
-                <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
-                <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
-                <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />
-                <ScalarProperty Name="mFacebookAccount" ColumnName="mFacebookAccount" />
-                <ScalarProperty Name="mGoogleIcon" ColumnName="mGoogleIcon" />
-                <ScalarProperty Name="mGoogleAccount" ColumnName="mGoogleAccount" />
-                <ScalarProperty Name="mPassword" ColumnName="mPassword" />
                 <ScalarProperty Name="mID" ColumnName="mID" />
                 <ScalarProperty Name="mName" ColumnName="mName" />
                 <ScalarProperty Name="mBirthday" ColumnName="mBirthday" />
@@ -262,6 +253,16 @@
                 <ScalarProperty Name="mCreditCardNo" ColumnName="mCreditCardNo" />
                 <ScalarProperty Name="mCreditCardExp" ColumnName="mCreditCardExp" />
                 <ScalarProperty Name="mCreditCardCVV" ColumnName="mCreditCardCVV" />
+                <ScalarProperty Name="mPassword" ColumnName="mPassword" />
+                <ScalarProperty Name="mGoogleAccount" ColumnName="mGoogleAccount" />
+                <ScalarProperty Name="mGoogleName" ColumnName="mGoogleName" />
+                <ScalarProperty Name="mGoogleIcon" ColumnName="mGoogleIcon" />
+                <ScalarProperty Name="mFacebookAccount" ColumnName="mFacebookAccount" />
+                <ScalarProperty Name="mFacebookName" ColumnName="mFacebookName" />
+                <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />
+                <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
+                <ScalarProperty Name="mLineName" ColumnName="mLineName" />
+                <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
                 <ScalarProperty Name="mEnabled" ColumnName="mEnabled" />
                 <ScalarProperty Name="mAddDate" ColumnName="mAddDate" />
                 <ScalarProperty Name="mLastModify" ColumnName="mLastModify" />

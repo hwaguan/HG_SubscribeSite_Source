@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="42049fc03c2a4bb0b3ea0aff612369df" Name="Diagram1">
+      <Diagram DiagramId="2c6aeaaff7d847c79478944f6b00dafb" Name="Diagram1">
         <EntityTypeShape EntityType="ClikGoModel.adminAuthGroup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClikGoModel.administrator" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClikGoModel.adminMenu" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

@@ -51,16 +51,6 @@
     <EntitySetMapping Name="member">
       <EntityTypeMapping TypeName="ClikGoModel.member">
         <MappingFragment StoreEntitySet="member">
-          <ScalarProperty Name="mLineName" ColumnName="mLineName" />
-          <ScalarProperty Name="mFacebookName" ColumnName="mFacebookName" />
-          <ScalarProperty Name="mGoogleName" ColumnName="mGoogleName" />
-          <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
-          <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
-          <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />
-          <ScalarProperty Name="mFacebookAccount" ColumnName="mFacebookAccount" />
-          <ScalarProperty Name="mGoogleIcon" ColumnName="mGoogleIcon" />
-          <ScalarProperty Name="mGoogleAccount" ColumnName="mGoogleAccount" />
-          <ScalarProperty Name="mPassword" ColumnName="mPassword" />
           <ScalarProperty Name="mID" ColumnName="mID" />
           <ScalarProperty Name="mName" ColumnName="mName" />
           <ScalarProperty Name="mBirthday" ColumnName="mBirthday" />
@@ -78,6 +68,16 @@
           <ScalarProperty Name="mCreditCardNo" ColumnName="mCreditCardNo" />
           <ScalarProperty Name="mCreditCardExp" ColumnName="mCreditCardExp" />
           <ScalarProperty Name="mCreditCardCVV" ColumnName="mCreditCardCVV" />
+          <ScalarProperty Name="mPassword" ColumnName="mPassword" />
+          <ScalarProperty Name="mGoogleAccount" ColumnName="mGoogleAccount" />
+          <ScalarProperty Name="mGoogleName" ColumnName="mGoogleName" />
+          <ScalarProperty Name="mGoogleIcon" ColumnName="mGoogleIcon" />
+          <ScalarProperty Name="mFacebookAccount" ColumnName="mFacebookAccount" />
+          <ScalarProperty Name="mFacebookName" ColumnName="mFacebookName" />
+          <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />
+          <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
+          <ScalarProperty Name="mLineName" ColumnName="mLineName" />
+          <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
           <ScalarProperty Name="mEnabled" ColumnName="mEnabled" />
           <ScalarProperty Name="mAddDate" ColumnName="mAddDate" />
           <ScalarProperty Name="mLastModify" ColumnName="mLastModify" />
