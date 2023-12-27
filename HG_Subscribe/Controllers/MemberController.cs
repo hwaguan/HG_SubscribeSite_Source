@@ -60,7 +60,6 @@ namespace HG_Subscribe.Controllers
             {
                 member newUser = new member();
 
-                newUser.mName = CName;
                 newUser.mMail = cryptor.encryptData(CMail);
                 newUser.mEnabled = 1;
                 newUser.mGoogleAccount = cid;
