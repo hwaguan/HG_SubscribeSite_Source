@@ -72,10 +72,13 @@
           <Property Name="mCreditCardCVV" Type="varchar" MaxLength="50" />
           <Property Name="mPassword" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="mGoogleAccount" Type="varchar" MaxLength="300" />
+          <Property Name="mGoogleName" Type="nvarchar" MaxLength="500" />
           <Property Name="mGoogleIcon" Type="varchar" MaxLength="500" />
           <Property Name="mFacebookAccount" Type="varchar" MaxLength="300" />
+          <Property Name="mFacebookName" Type="nvarchar" MaxLength="500" />
           <Property Name="mFacebookIcon" Type="varchar" MaxLength="500" />
           <Property Name="mLineAccount" Type="varchar" MaxLength="300" />
+          <Property Name="mLineName" Type="nvarchar" MaxLength="500" />
           <Property Name="mLineIcon" Type="varchar" MaxLength="500" />
           <Property Name="mEnabled" Type="int" Nullable="false" />
           <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
@@ -166,6 +169,9 @@
           <Property Name="mFacebookIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="mLineAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="mLineIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mGoogleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mFacebookName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mLineName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
@@ -229,6 +235,9 @@
           <EntitySetMapping Name="member">
             <EntityTypeMapping TypeName="ClikGoModel.member">
               <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="mLineName" ColumnName="mLineName" />
+                <ScalarProperty Name="mFacebookName" ColumnName="mFacebookName" />
+                <ScalarProperty Name="mGoogleName" ColumnName="mGoogleName" />
                 <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
                 <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
                 <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />

@@ -41,5 +41,8 @@ namespace HG_Subscribe.Models
         public string mFacebookIcon { get; set; }
         public string mLineAccount { get; set; }
         public string mLineIcon { get; set; }
+        public string mGoogleName { get; set; }
+        public string mFacebookName { get; set; }
+        public string mLineName { get; set; }
     }
 }

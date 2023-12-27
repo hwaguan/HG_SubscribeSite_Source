@@ -51,6 +51,9 @@
     <EntitySetMapping Name="member">
       <EntityTypeMapping TypeName="ClikGoModel.member">
         <MappingFragment StoreEntitySet="member">
+          <ScalarProperty Name="mLineName" ColumnName="mLineName" />
+          <ScalarProperty Name="mFacebookName" ColumnName="mFacebookName" />
+          <ScalarProperty Name="mGoogleName" ColumnName="mGoogleName" />
           <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
           <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
           <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />

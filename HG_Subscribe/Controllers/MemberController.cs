@@ -61,9 +61,10 @@ namespace HG_Subscribe.Controllers
                 member newUser = new member();
 
                 newUser.mName = CName;
-                newUser.mMail = CMail;
+                newUser.mMail = cryptor.encryptData(CMail);
                 newUser.mEnabled = 1;
                 newUser.mGoogleAccount = cid;
+                newUser.mGoogleName = cryptor.encryptData(CName);
                 newUser.mGoogleIcon = CPic;
                 newUser.mPassword = "";
                 newUser.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -71,7 +72,13 @@ namespace HG_Subscribe.Controllers
                 db.member.Add(newUser);
                 db.SaveChanges();
 
+                newUser.mGoogleName = CName;
                 user = newUser;
+            }
+            else
+            {
+                user.mGoogleName = cryptor.decryptData(user.mGoogleName);
+                user.mMail = cryptor.decryptData(user.mMail);
             }
 
             result.code = 200;
