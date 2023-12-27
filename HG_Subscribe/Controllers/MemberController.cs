@@ -73,6 +73,7 @@ namespace HG_Subscribe.Controllers
                 db.SaveChanges();
 
                 newUser.mGoogleName = CName;
+                newUser.mMail = CMail;
                 user = newUser;
             }
             else
