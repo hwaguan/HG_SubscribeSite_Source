@@ -64,7 +64,7 @@ namespace HG_Subscribe.Controllers
                 newUser.mMail = cryptor.encryptData(CMail);
                 newUser.mEnabled = 1;
                 newUser.mGoogleAccount = cid;
-                newUser.mGoogleName = cryptor.encryptData(CName);
+                newUser.mGoogleName = CName;
                 newUser.mGoogleIcon = CPic;
                 newUser.mPassword = "";
                 newUser.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -78,7 +78,6 @@ namespace HG_Subscribe.Controllers
             }
             else
             {
-                user.mGoogleName = cryptor.decryptData(user.mGoogleName);
                 user.mMail = cryptor.decryptData(user.mMail);
             }
 
