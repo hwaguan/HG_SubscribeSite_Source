@@ -63,6 +63,7 @@ namespace HG_Subscribe.Controllers
                 newUser.mName = CName;
                 newUser.mMail = CMail;
                 newUser.mEnabled = 1;
+                newUser.mGoogleAccount = CID;
                 newUser.mGoogleIcon = CPic;
                 newUser.mPassword = "";
                 newUser.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
