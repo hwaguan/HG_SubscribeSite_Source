@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -54,36 +55,41 @@ namespace HG_Subscribe.Controllers
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
             string cid = cryptor.encryptData(CID);
 
-            member user = db.member.Where(m => m.mGoogleAccount == cid).FirstOrDefault();
-
-            if (user == null)
+            using (db = new ClikGoEntities())
             {
-                member newUser = new member();
+                member user = db.member.Where(m => m.mGoogleAccount == cid).FirstOrDefault();
 
-                newUser.mName = "";
-                newUser.mMail = cryptor.encryptData(CMail);
-                newUser.mEnabled = 1;
-                newUser.mGoogleAccount = cid;
-                newUser.mGoogleName = CName;
-                newUser.mGoogleIcon = CPic;
-                newUser.mPassword = "";
-                newUser.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                if (user == null)
+                {
+                    member newUser = new member();
 
-                db.member.Add(newUser);
-                db.SaveChanges();
+                    newUser.mName = "";
+                    newUser.mMail = cryptor.encryptData(CMail);
+                    newUser.mEnabled = 1;
+                    newUser.mGoogleAccount = cid;
+                    newUser.mGoogleName = CName;
+                    newUser.mGoogleIcon = CPic;
+                    newUser.mPassword = "";
+                    newUser.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                newUser.mGoogleName = CName;
-                newUser.mMail = CMail;
-                user = newUser;
+                    db.member.Add(newUser);
+                    db.SaveChanges();
+
+                    newUser.mGoogleName = CName;
+                    newUser.mMail = CMail;
+                    user = newUser;
+                }
+                else
+                {
+                    string dbMail = user.mMail;
+                    string oriMail = cryptor.decryptData(dbMail);
+                    user.mMail = oriMail;
+                }
+
+                result.code = 200;
+                result.result = true;
+                result.message = user;
             }
-            else
-            {
-                user.mMail = cryptor.decryptData(user.mMail);
-            }
-
-            result.code = 200;
-            result.result = true;
-            result.message = user;
 
             return JsonConvert.SerializeObject(result);
         }
