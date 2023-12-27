@@ -18,7 +18,7 @@ namespace HG_Subscribe.Models
         public string mName { get; set; }
         public string mBirthday { get; set; }
         public string mSocialSecurityCode { get; set; }
-        public int mGender { get; set; }
+        public Nullable<int> mGender { get; set; }
         public string mTelHome { get; set; }
         public string mTelOffice { get; set; }
         public string mTelOfficeExt { get; set; }
@@ -34,5 +34,12 @@ namespace HG_Subscribe.Models
         public int mEnabled { get; set; }
         public string mAddDate { get; set; }
         public string mLastModify { get; set; }
+        public string mPassword { get; set; }
+        public string mGoogleAccount { get; set; }
+        public string mGoogleIcon { get; set; }
+        public string mFacebookAccount { get; set; }
+        public string mFacebookIcon { get; set; }
+        public string mLineAccount { get; set; }
+        public string mLineIcon { get; set; }
     }
 }

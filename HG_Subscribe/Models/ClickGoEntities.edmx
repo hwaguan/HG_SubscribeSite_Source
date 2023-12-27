@@ -57,19 +57,26 @@
           <Property Name="mName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="mBirthday" Type="varchar" MaxLength="50" />
           <Property Name="mSocialSecurityCode" Type="varchar" MaxLength="10" />
-          <Property Name="mGender" Type="int" Nullable="false" />
+          <Property Name="mGender" Type="int" />
           <Property Name="mTelHome" Type="varchar" MaxLength="100" />
           <Property Name="mTelOffice" Type="varchar" MaxLength="100" />
           <Property Name="mTelOfficeExt" Type="varchar" MaxLength="50" />
           <Property Name="mMobile" Type="varchar" MaxLength="50" />
-          <Property Name="mMail" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="mZip" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="mAddressCity" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="mAddressArea" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mMail" Type="varchar" MaxLength="200" />
+          <Property Name="mZip" Type="varchar" MaxLength="5" />
+          <Property Name="mAddressCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="mAddressArea" Type="nvarchar" MaxLength="50" />
           <Property Name="mAddressRest" Type="nvarchar(max)" />
           <Property Name="mCreditCardNo" Type="varchar" MaxLength="50" />
           <Property Name="mCreditCardExp" Type="varchar" MaxLength="50" />
           <Property Name="mCreditCardCVV" Type="varchar" MaxLength="50" />
+          <Property Name="mPassword" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="mGoogleAccount" Type="varchar" MaxLength="300" />
+          <Property Name="mGoogleIcon" Type="varchar" MaxLength="500" />
+          <Property Name="mFacebookAccount" Type="varchar" MaxLength="300" />
+          <Property Name="mFacebookIcon" Type="varchar" MaxLength="500" />
+          <Property Name="mLineAccount" Type="varchar" MaxLength="300" />
+          <Property Name="mLineIcon" Type="varchar" MaxLength="500" />
           <Property Name="mEnabled" Type="int" Nullable="false" />
           <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="mLastModify" Type="varchar" MaxLength="20" />
@@ -136,15 +143,15 @@
           <Property Name="mName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="mBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mSocialSecurityCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="mGender" Type="Int32" Nullable="false" />
+          <Property Name="mGender" Type="Int32" />
           <Property Name="mTelHome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="mTelOffice" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="mTelOfficeExt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="mMail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="mZip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="mAddressCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="mAddressArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mMail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mZip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="mAddressCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mAddressArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mAddressRest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="mCreditCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mCreditCardExp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -152,6 +159,13 @@
           <Property Name="mEnabled" Type="Int32" Nullable="false" />
           <Property Name="mAddDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mPassword" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mGoogleAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="mGoogleIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mFacebookAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="mFacebookIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mLineAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="mLineIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
@@ -215,6 +229,13 @@
           <EntitySetMapping Name="member">
             <EntityTypeMapping TypeName="ClikGoModel.member">
               <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="mLineIcon" ColumnName="mLineIcon" />
+                <ScalarProperty Name="mLineAccount" ColumnName="mLineAccount" />
+                <ScalarProperty Name="mFacebookIcon" ColumnName="mFacebookIcon" />
+                <ScalarProperty Name="mFacebookAccount" ColumnName="mFacebookAccount" />
+                <ScalarProperty Name="mGoogleIcon" ColumnName="mGoogleIcon" />
+                <ScalarProperty Name="mGoogleAccount" ColumnName="mGoogleAccount" />
+                <ScalarProperty Name="mPassword" ColumnName="mPassword" />
                 <ScalarProperty Name="mID" ColumnName="mID" />
                 <ScalarProperty Name="mName" ColumnName="mName" />
                 <ScalarProperty Name="mBirthday" ColumnName="mBirthday" />
