@@ -51,6 +51,10 @@
     <EntitySetMapping Name="member">
       <EntityTypeMapping TypeName="ClikGoModel.member">
         <MappingFragment StoreEntitySet="member">
+          <ScalarProperty Name="mLineMail" ColumnName="mLineMail" />
+          <ScalarProperty Name="mFacebookMail" ColumnName="mFacebookMail" />
+          <ScalarProperty Name="mGoogleMail" ColumnName="mGoogleMail" />
+          <ScalarProperty Name="mAvatar" ColumnName="mAvatar" />
           <ScalarProperty Name="mID" ColumnName="mID" />
           <ScalarProperty Name="mName" ColumnName="mName" />
           <ScalarProperty Name="mBirthday" ColumnName="mBirthday" />
@@ -81,6 +85,18 @@
           <ScalarProperty Name="mEnabled" ColumnName="mEnabled" />
           <ScalarProperty Name="mAddDate" ColumnName="mAddDate" />
           <ScalarProperty Name="mLastModify" ColumnName="mLastModify" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="memberAccessLog">
+      <EntityTypeMapping TypeName="ClikGoModel.memberAccessLog">
+        <MappingFragment StoreEntitySet="memberAccessLog">
+          <ScalarProperty Name="malTime" ColumnName="malTime" />
+          <ScalarProperty Name="malResult" ColumnName="malResult" />
+          <ScalarProperty Name="malData" ColumnName="malData" />
+          <ScalarProperty Name="malAction" ColumnName="malAction" />
+          <ScalarProperty Name="malType" ColumnName="malType" />
+          <ScalarProperty Name="malID" ColumnName="malID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -44,5 +44,9 @@ namespace HG_Subscribe.Models
         public int mEnabled { get; set; }
         public string mAddDate { get; set; }
         public string mLastModify { get; set; }
+        public string mAvatar { get; set; }
+        public string mGoogleMail { get; set; }
+        public string mFacebookMail { get; set; }
+        public string mLineMail { get; set; }
     }
 }

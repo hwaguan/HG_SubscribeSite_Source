@@ -190,6 +190,9 @@
     <Compile Include="Models\member.cs">
       <DependentUpon>ClickGoEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\memberAccessLog.cs">
+      <DependentUpon>ClickGoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MITEM.cs">
       <DependentUpon>HGEntities.tt</DependentUpon>
     </Compile>

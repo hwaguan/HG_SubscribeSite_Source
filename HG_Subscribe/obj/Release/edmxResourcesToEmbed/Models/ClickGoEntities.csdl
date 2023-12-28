@@ -78,11 +78,27 @@
     <Property Name="mEnabled" Type="Int32" Nullable="false" />
     <Property Name="mAddDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mAvatar" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="mGoogleMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mFacebookMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mLineMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
     <EntitySet Name="administrator" EntityType="Self.administrator" />
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" />
     <EntitySet Name="member" EntityType="Self.member" />
+    <EntitySet Name="memberAccessLog" EntityType="ClikGoModel.memberAccessLog" />
   </EntityContainer>
+  <EntityType Name="memberAccessLog">
+    <Key>
+      <PropertyRef Name="malID" />
+    </Key>
+    <Property Name="malID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="malType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="malAction" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="malData" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="malResult" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="malTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>
