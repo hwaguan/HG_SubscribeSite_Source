@@ -27,24 +27,37 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
-            memberAccessLog accessLog = new memberAccessLog();
-            accessLog.malType = "Regular";
-            accessLog.malAction = "Login";
-            accessLog.malData = string.Format("Account : {0}, Password : {1}", account, password);
-            accessLog.malTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            accessLog.malResult = "Begin";
-            db.memberAccessLog.Add(accessLog);
-            db.SaveChanges();
-
-            string accessResult = "Granted";
-
-            string acc = cryptor.encryptData(account);
-            string psw = cryptor.encryptData(password);
-
-            member user = db.member.Where(m => (m.mMail == acc || m.mGoogleMail == acc || m.mFacebookMail == acc || m.mLineMail == acc) && m.mPassword == psw && m.mEnabled > 0).FirstOrDefault();
-
-            if (user != null)
+            using (db = new ClikGoEntities())
             {
+                memberAccessLog accessLog = new memberAccessLog();
+                accessLog.malType = "Regular";
+                accessLog.malAction = "Login";
+                accessLog.malData = string.Format("Account : {0}, Password : {1}", account, password);
+                accessLog.malTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                accessLog.malResult = "Begin";
+                db.memberAccessLog.Add(accessLog);
+                db.SaveChanges();
+
+                string accessResult = "Granted";
+
+                string acc = cryptor.encryptData(account);
+                string psw = cryptor.encryptData(password);
+
+                member user = db.member.Where(m => (m.mMail == acc || m.mGoogleMail == acc || m.mFacebookMail == acc || m.mLineMail == acc) && m.mPassword == psw && m.mEnabled > 0).FirstOrDefault();
+
+                if (user != null)
+                {
+                    result.code = 200;
+                    result.result = true;
+                    result.message = user;
+                }
+                else
+                {
+                    accessResult = "Denied";
+                    result.code = -1;
+                    result.result = false;
+                    result.message = null;
+                }
 
                 string userName = user != null ? user.mName : string.Empty;
                 accessLog.malType = "Regular";
@@ -55,22 +68,14 @@ namespace HG_Subscribe.Controllers
                 db.memberAccessLog.Add(accessLog);
                 db.SaveChanges();
 
-                string dbMail = user.mMail;
-                string oriMail = dbMail != null && dbMail != "" ? cryptor.decryptData(dbMail) : "";
-                user.mMail = oriMail;
-
-                result.code = 200;
-                result.result = true;
-                result.message = user;
+                if (result.code > 0)
+                {
+                    string dbMail = user.mMail;
+                    string oriMail = dbMail != null && dbMail != "" ? cryptor.decryptData(dbMail) : "";
+                    user.mMail = oriMail;
+                    result.message = user;
+                }
             }
-            else
-            {
-                accessResult = "Denied";
-                result.code = -1;
-                result.result = false;
-                result.message = null;
-            }
-
             return JsonConvert.SerializeObject(result);
         }
 

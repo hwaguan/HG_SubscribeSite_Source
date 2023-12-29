@@ -97,7 +97,7 @@
     <Property Name="malID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="malType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="malAction" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="malData" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="malData" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="malResult" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="malTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>

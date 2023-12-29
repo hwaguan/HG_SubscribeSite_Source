@@ -90,7 +90,7 @@
     <Property Name="malID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="malType" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="malAction" Type="varchar" MaxLength="300" Nullable="false" />
-    <Property Name="malData" Type="varchar" MaxLength="300" />
+    <Property Name="malData" Type="nvarchar" MaxLength="300" />
     <Property Name="malResult" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="malTime" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
