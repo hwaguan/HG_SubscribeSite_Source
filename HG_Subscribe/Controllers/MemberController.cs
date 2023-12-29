@@ -45,13 +45,14 @@ namespace HG_Subscribe.Controllers
 
             if (user != null)
             {
+                member targetUser = user;
                 string dbMail = user.mMail;
                 string oriMail = dbMail != null && dbMail != "" ? cryptor.decryptData(dbMail) : "";
-                user.mMail = oriMail;
+                targetUser.mMail = oriMail;
 
                 result.code = 200;
                 result.result = true;
-                result.message = user;
+                result.message = targetUser;
             }
             else
             {
