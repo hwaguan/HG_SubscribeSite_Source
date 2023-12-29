@@ -43,12 +43,12 @@ namespace HG_Subscribe.Controllers
 
             member user = db.member.Where(m => (m.mMail == acc || m.mGoogleMail == acc || m.mFacebookMail == acc || m.mLineMail == acc) && m.mPassword == psw && m.mEnabled > 0).FirstOrDefault();
 
-            string dbMail = user.mMail;
-            string oriMail = dbMail != null && dbMail != "" ? cryptor.decryptData(dbMail) : "";
-            user.mMail = oriMail;
-
             if (user != null)
             {
+                string dbMail = user.mMail;
+                string oriMail = dbMail != null && dbMail != "" ? cryptor.decryptData(dbMail) : "";
+                user.mMail = oriMail;
+
                 result.code = 200;
                 result.result = true;
                 result.message = user;
