@@ -106,7 +106,7 @@ namespace HG_Subscribe.Controllers
                         newUser.mName = CName;
                         newUser.mMail = "";
                         newUser.mEnabled = 1;
-                        newUser.mGoogleAccount = cid;
+                        newUser.mGoogleAccount = cryptor.encryptData(cid);
                         newUser.mGoogleName = CName;
                         newUser.mGoogleIcon = CPic;
                         newUser.mGoogleMail = clientMail;
@@ -129,9 +129,10 @@ namespace HG_Subscribe.Controllers
                             newUser.mName = CName;
                             newUser.mMail = "";
                             newUser.mEnabled = 1;
-                            newUser.mGoogleAccount = cid;
+                            newUser.mGoogleAccount = cryptor.encryptData(cid);
                             newUser.mGoogleName = CName;
                             newUser.mGoogleIcon = CPic;
+                            newUser.mGoogleMail = clientMail;
                             newUser.mPassword = "";
                             newUser.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -142,8 +143,8 @@ namespace HG_Subscribe.Controllers
                         {
                             if (user.mEnabled > 0)//若以 email 比對尋獲使用者, 且使用者仍為有效狀態, 則更新使用者的 google 帳號相關資訊
                             {
-                                user.mGoogleAccount = cid;
-                                user.mGoogleMail = clientMail;
+                                user.mGoogleAccount = cryptor.encryptData(cid);
+                                user.mGoogleMail = cryptor.encryptData(clientMail);
                                 user.mGoogleName = CName;
                                 user.mGoogleIcon = CPic;
 
