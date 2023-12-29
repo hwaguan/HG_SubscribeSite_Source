@@ -176,6 +176,15 @@ namespace HG_Subscribe.Controllers
                     user = newUser;
                 }
                 else
+                {
+                    user.mGoogleAccount = cryptor.encryptData(cid);
+                    user.mGoogleMail = cryptor.encryptData(CMail);
+                    user.mGoogleName = CName;
+                    user.mGoogleIcon = CPic;
+
+                    db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
 
                 accessLog.malType = "Google";
                 accessLog.malAction = "Login";
