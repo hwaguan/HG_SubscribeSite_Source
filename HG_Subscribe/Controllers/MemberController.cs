@@ -153,7 +153,7 @@ namespace HG_Subscribe.Controllers
                         {
                             if (user.mEnabled > 0)//若以 email 比對尋獲使用者, 且使用者仍為有效狀態, 則更新使用者的 google 帳號相關資訊
                             {
-                                user.mGoogleAccount = cryptor.encryptData(cid);
+                                user.mGoogleAccount = cid;
                                 user.mGoogleMail = cryptor.encryptData(clientMail);
                                 user.mGoogleName = CName;
                                 user.mGoogleIcon = CPic;
@@ -177,7 +177,7 @@ namespace HG_Subscribe.Controllers
                 }
                 else
                 {
-                    user.mGoogleAccount = cryptor.encryptData(cid);
+                    user.mGoogleAccount = cid;
                     user.mGoogleMail = cryptor.encryptData(CMail);
                     user.mGoogleName = CName;
                     user.mGoogleIcon = CPic;
