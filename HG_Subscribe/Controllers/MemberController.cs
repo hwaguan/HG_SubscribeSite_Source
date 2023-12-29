@@ -45,14 +45,23 @@ namespace HG_Subscribe.Controllers
 
             if (user != null)
             {
-                member targetUser = user;
+
+                string userName = user != null ? user.mName : string.Empty;
+                accessLog.malType = "Regular";
+                accessLog.malAction = "Login";
+                accessLog.malData = string.Format("Account : {0}, Password : {1}, Name : {2}", account, password, userName);
+                accessLog.malTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                accessLog.malResult = accessResult;
+                db.memberAccessLog.Add(accessLog);
+                db.SaveChanges();
+
                 string dbMail = user.mMail;
                 string oriMail = dbMail != null && dbMail != "" ? cryptor.decryptData(dbMail) : "";
-                targetUser.mMail = oriMail;
+                user.mMail = oriMail;
 
                 result.code = 200;
                 result.result = true;
-                result.message = targetUser;
+                result.message = user;
             }
             else
             {
@@ -61,15 +70,6 @@ namespace HG_Subscribe.Controllers
                 result.result = false;
                 result.message = null;
             }
-
-            string userName = user != null ? user.mName : string.Empty;
-            accessLog.malType = "Regular";
-            accessLog.malAction = "Login";
-            accessLog.malData = string.Format("Account : {0}, Password : {1}, Name : {2}", account, password, userName);
-            accessLog.malTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            accessLog.malResult = accessResult;
-            db.memberAccessLog.Add(accessLog);
-            db.SaveChanges();
 
             return JsonConvert.SerializeObject(result);
         }
