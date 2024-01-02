@@ -89,29 +89,37 @@ namespace HG_Subscribe.Controllers
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
             int unixTimestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            string[] tokenArr = cryptor.decryptData(registerToken).Split('_');
-            int tokenVal = int.Parse(tokenArr[0]) == 0 ? int.Parse(tokenArr[1]) : int.Parse(tokenArr[0]);
-
-            using (db = new ClikGoEntities())
+            try
             {
-                member targetMember = db.member.Where(m => m.mRegisterToken == registerToken).FirstOrDefault();
+                string[] tokenArr = cryptor.decryptData(registerToken).Split('_');
+                int tokenVal = int.Parse(tokenArr[0]) == 0 ? int.Parse(tokenArr[1]) : int.Parse(tokenArr[0]);
 
-                if(targetMember != null)
+                using (db = new ClikGoEntities())
                 {
-                    targetMember.mEnabled = 1;
-                    db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
+                    member targetMember = db.member.Where(m => m.mRegisterToken == registerToken).FirstOrDefault();
 
-                    result.result = true;
-                    result.code = 200;
-                    result.message = targetMember;
+                    if (targetMember != null)
+                    {
+                        targetMember.mEnabled = 1;
+                        db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+
+                        result.result = true;
+                        result.code = 200;
+                        result.message = targetMember;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.code = -1;
+                        result.message = registerToken + " init failed.";
+                    }
                 }
-                else
-                {
-                    result.result = false;
-                    result.code = -1;
-                    result.message = registerToken + " init failed.";
-                }
+            }catch(Exception ex)
+            {
+                result.result = false;
+                result.code = -1;
+                result.message = registerToken + " init failed.";
             }
 
             return JsonConvert.SerializeObject(result);
