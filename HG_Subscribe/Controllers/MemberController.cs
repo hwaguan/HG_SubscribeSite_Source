@@ -20,6 +20,33 @@ namespace HG_Subscribe.Controllers
         private static Models.HGEntities dbHG = new Models.HGEntities();
 
         [HttpPost]
+        public string verifyMember(string mMail, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            using (db = new ClikGoEntities())
+            {
+                member existMember = db.member.Where(m => m.mMail == mMail || m.mGoogleMail == mMail || m.mFacebookMail == mMail || m.mLineMail == mMail).FirstOrDefault();
+
+                result.code = 200;
+                result.result = true;
+                result.message = existMember != null;
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        /// <summary>
+        /// 一般會員登入
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPost]
         public string login(string account, string password, string token)
         {
             //驗證交易金鑰
@@ -79,6 +106,15 @@ namespace HG_Subscribe.Controllers
             return JsonConvert.SerializeObject(result);
         }
 
+        /// <summary>
+        /// google 會員登入
+        /// </summary>
+        /// <param name="CID"></param>
+        /// <param name="CName"></param>
+        /// <param name="CMail"></param>
+        /// <param name="CPic"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [HttpPost]
         public string googleLogin(string CID, string CName, string CMail, string CPic, string token)
         {
