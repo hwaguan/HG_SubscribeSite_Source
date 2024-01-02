@@ -17,6 +17,7 @@ namespace HG_Subscribe.Models
         public int mID { get; set; }
         public string mName { get; set; }
         public string mBirthday { get; set; }
+        public string mAvatar { get; set; }
         public string mSocialSecurityCode { get; set; }
         public Nullable<int> mGender { get; set; }
         public string mTelHome { get; set; }
@@ -35,18 +36,18 @@ namespace HG_Subscribe.Models
         public string mGoogleAccount { get; set; }
         public string mGoogleName { get; set; }
         public string mGoogleIcon { get; set; }
+        public string mGoogleMail { get; set; }
         public string mFacebookAccount { get; set; }
         public string mFacebookName { get; set; }
         public string mFacebookIcon { get; set; }
+        public string mFacebookMail { get; set; }
         public string mLineAccount { get; set; }
         public string mLineName { get; set; }
         public string mLineIcon { get; set; }
+        public string mLineMail { get; set; }
+        public string mRegisterToken { get; set; }
         public int mEnabled { get; set; }
         public string mAddDate { get; set; }
         public string mLastModify { get; set; }
-        public string mAvatar { get; set; }
-        public string mGoogleMail { get; set; }
-        public string mFacebookMail { get; set; }
-        public string mLineMail { get; set; }
     }
 }

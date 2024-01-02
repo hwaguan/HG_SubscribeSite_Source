@@ -51,6 +51,7 @@
     <Property Name="mID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="mName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="mBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mAvatar" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="mSocialSecurityCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="mGender" Type="Int32" />
     <Property Name="mTelHome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -69,36 +70,36 @@
     <Property Name="mGoogleAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="mGoogleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="mGoogleIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mGoogleMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="mFacebookAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="mFacebookName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="mFacebookIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mFacebookMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="mLineAccount" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="mLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="mLineIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mLineMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mRegisterToken" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="mEnabled" Type="Int32" Nullable="false" />
     <Property Name="mAddDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="mLastModify" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="mAvatar" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="mGoogleMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="mFacebookMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="mLineMail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="memberAccessLog">
+    <Key>
+      <PropertyRef Name="malID" />
+    </Key>
+    <Property Name="malID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="malType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="malAction" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="malData" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="malResult" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="malTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityContainer Name="ClikGoEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" />
     <EntitySet Name="administrator" EntityType="Self.administrator" />
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" />
     <EntitySet Name="member" EntityType="Self.member" />
-    <EntitySet Name="memberAccessLog" EntityType="ClikGoModel.memberAccessLog" />
+    <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" />
   </EntityContainer>
-  <EntityType Name="memberAccessLog">
-    <Key>
-      <PropertyRef Name="malID" />
-    </Key>
-    <Property Name="malID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="malType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="malAction" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="malData" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="malResult" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="malTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
 </Schema>

@@ -40,6 +40,46 @@ namespace HG_Subscribe.Controllers
             return JsonConvert.SerializeObject(result);
         }
 
+        [HttpPost]
+        public string registerMember(string account, string password, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            using (db = new ClikGoEntities())
+            {
+                int unixTimestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                member newMember = new member();
+                string regusterTokenStr = unixTimestamp.ToString();
+                if (unixTimestamp % 2 == 0)
+                {
+                    regusterTokenStr = "0_" + regusterTokenStr;
+                }
+                else
+                {
+                    regusterTokenStr = regusterTokenStr + "_0";
+                }
+
+                newMember.mName = "訪客";
+                newMember.mMail = cryptor.encryptData(account);
+                newMember.mPassword = cryptor.encryptData(password);
+                newMember.mEnabled = 0;
+                newMember.mRegisterToken = cryptor.encryptData(regusterTokenStr);
+                newMember.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                db.member.Add(newMember);
+                db.SaveChanges();
+
+                result.result = true;
+                result.code = 200;
+                result.message = newMember;
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+
         /// <summary>
         /// 一般會員登入
         /// </summary>
