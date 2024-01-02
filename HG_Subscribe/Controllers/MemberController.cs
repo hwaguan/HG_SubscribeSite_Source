@@ -100,13 +100,22 @@ namespace HG_Subscribe.Controllers
 
                     if (targetMember != null)
                     {
-                        targetMember.mEnabled = 1;
-                        db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        if (targetMember.mEnabled == 0)
+                        {
+                            targetMember.mEnabled = 1;
+                            db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
+                            db.SaveChanges();
 
-                        result.result = true;
-                        result.code = 200;
-                        result.message = targetMember;
+                            result.result = true;
+                            result.code = 200;
+                            result.message = targetMember;
+                        }
+                        else
+                        {
+                            result.result = false;
+                            result.code = 666;
+                            result.message = "account already inited";
+                        }
                     }
                     else
                     {
