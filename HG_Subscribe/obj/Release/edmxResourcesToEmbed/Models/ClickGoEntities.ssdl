@@ -79,6 +79,7 @@
     <Property Name="mLineName" Type="nvarchar" MaxLength="50" />
     <Property Name="mLineIcon" Type="varchar" MaxLength="500" />
     <Property Name="mLineMail" Type="varchar" MaxLength="500" />
+    <Property Name="mRegisterToken" Type="varchar" MaxLength="300" />
     <Property Name="mEnabled" Type="int" Nullable="false" />
     <Property Name="mAddDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="mLastModify" Type="varchar" MaxLength="20" />
