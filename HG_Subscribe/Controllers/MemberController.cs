@@ -29,7 +29,8 @@ namespace HG_Subscribe.Controllers
 
             using (db = new ClikGoEntities())
             {
-                member existMember = db.member.Where(m => m.mMail == mMail || m.mGoogleMail == mMail || m.mFacebookMail == mMail || m.mLineMail == mMail).FirstOrDefault();
+                string cryptedMail = cryptor.encryptData(mMail);
+                member existMember = db.member.Where(m => m.mMail == cryptedMail || m.mGoogleMail == cryptedMail || m.mFacebookMail == cryptedMail || m.mLineMail == cryptedMail).FirstOrDefault();
 
                 result.code = 200;
                 result.result = true;
