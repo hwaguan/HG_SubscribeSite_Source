@@ -378,22 +378,34 @@ namespace HG_Subscribe.Controllers
                 using (db = new ClikGoEntities())
                 {
                     string encryptMail = cryptor.encryptData(mMail);
+                    string limitDate = DateTime.Now.ToString("yyyy-MM");
                     member targetMember = db.member.Where(m => m.mMail == encryptMail).FirstOrDefault();
 
-                    changePassLog CPL = new changePassLog();
+                    int applyCount = db.changePassLog.Where(c => c.cpMemberID == targetMember.mID && c.cpApplyDate.StartsWith(limitDate)).Count();
 
-                    CPL.cpMemberID = targetMember.mID;
-                    CPL.cpMemberName = targetMember.mName;
-                    CPL.cpMemberOldPassword = targetMember.mPassword;
-                    CPL.cpToken = getOTP(1);
-                    CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    if (applyCount < 3)
+                    {
+                        changePassLog CPL = new changePassLog();
 
-                    db.changePassLog.Add( CPL );
-                    db.SaveChanges();
+                        CPL.cpMemberID = targetMember.mID;
+                        CPL.cpMemberName = targetMember.mName;
+                        CPL.cpMemberOldPassword = targetMember.mPassword;
+                        CPL.cpToken = getOTP(1);
+                        CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                    result.result = true;
-                    result.code = 200;
-                    result.message = true;
+                        db.changePassLog.Add(CPL);
+                        db.SaveChanges();
+
+                        result.result = true;
+                        result.code = 200;
+                        result.message = true;
+                    }
+                    else
+                    {
+                        result.result = true;
+                        result.code = 666;
+                        result.message = false;
+                    }
                 }
             }catch (Exception e)
             {
