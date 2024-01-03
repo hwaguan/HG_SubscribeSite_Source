@@ -377,7 +377,8 @@ namespace HG_Subscribe.Controllers
             {
                 using (db = new ClikGoEntities())
                 {
-                    member targetMember = db.member.Where(m => m.mMail == cryptor.encryptData(mMail)).FirstOrDefault();
+                    string encryptMail = cryptor.encryptData(mMail);
+                    member targetMember = db.member.Where(m => m.mMail == encryptMail).FirstOrDefault();
 
                     changePassLog CPL = new changePassLog();
 
@@ -386,6 +387,9 @@ namespace HG_Subscribe.Controllers
                     CPL.cpMemberOldPassword = targetMember.mPassword;
                     CPL.cpToken = getOTP(1);
                     CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    db.changePassLog.Add( CPL );
+                    db.SaveChanges();
 
                     result.result = true;
                     result.code = 200;
@@ -457,17 +461,17 @@ namespace HG_Subscribe.Controllers
             int unixTimestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             int applyCount = 0;
 
-            using (db = new ClikGoEntities())
+            using (var dbOTP = new ClikGoEntities())
             {
                 string today = DateTime.Now.ToString("yyyy-MM-dd");
 
                 if (type == 0)
                 {
-                    applyCount = db.member.Where(m => m.mAddDate.StartsWith(today)).Count();
+                    applyCount = dbOTP.member.Where(m => m.mAddDate.StartsWith(today)).Count();
                 }
                 else
                 {
-                    applyCount = db.changePassLog.Where(c => c.cpApplyDate.StartsWith(today)).Count();
+                    applyCount = dbOTP.changePassLog.Where(c => c.cpApplyDate.StartsWith(today)).Count();
                 }
             }
 
