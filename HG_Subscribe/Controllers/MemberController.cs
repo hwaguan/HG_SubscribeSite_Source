@@ -404,7 +404,7 @@ namespace HG_Subscribe.Controllers
 
         #region 重置會員登入密碼
         [HttpPost]
-        public string resitMemberPassword(string logToken, string newPassword, string token)
+        public string resetMemberPassword(string logToken, string newPassword, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
