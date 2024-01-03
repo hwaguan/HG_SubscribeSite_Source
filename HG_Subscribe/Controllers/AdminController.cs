@@ -26,7 +26,7 @@ namespace HG_Subscribe.Controllers
         [HttpPost]
         public string greeting(string name, int mid)
         {
-            return "Hellow " + name + " , " + mid;
+            return "Hellow " + name + " , " + mid + "!!";
         }
 
         #region 取得所有員工
