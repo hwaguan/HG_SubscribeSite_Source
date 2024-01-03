@@ -101,5 +101,19 @@
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" />
     <EntitySet Name="member" EntityType="Self.member" />
     <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" />
+    <EntitySet Name="changePassLog" EntityType="ClikGoModel.changePassLog" />
   </EntityContainer>
+  <EntityType Name="changePassLog">
+    <Key>
+      <PropertyRef Name="cpID" />
+    </Key>
+    <Property Name="cpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cpMemberID" Type="Int32" Nullable="false" />
+    <Property Name="cpMemberName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cpMemberOldPassword" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="cpMemberNewPassword" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="cpToken" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="cpApplyDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cpChangeDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

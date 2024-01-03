@@ -44,6 +44,19 @@
     <Property Name="menuCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="menuLastModify" Type="varchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="changePassLog">
+    <Key>
+      <PropertyRef Name="cpID" />
+    </Key>
+    <Property Name="cpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cpMemberID" Type="int" Nullable="false" />
+    <Property Name="cpMemberName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cpMemberOldPassword" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="cpMemberNewPassword" Type="varchar" MaxLength="300" />
+    <Property Name="cpToken" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="cpApplyDate" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cpChangeDate" Type="varchar" MaxLength="20" />
+  </EntityType>
   <EntityType Name="member">
     <Key>
       <PropertyRef Name="mID" />
@@ -99,6 +112,7 @@
     <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="changePassLog" EntityType="Self.changePassLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

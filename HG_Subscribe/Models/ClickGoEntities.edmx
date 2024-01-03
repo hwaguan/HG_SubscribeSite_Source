@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClikGoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="adminAuthGroup">
           <Key>
             <PropertyRef Name="agID" />
@@ -48,6 +48,19 @@
           <Property Name="menuEnabled" Type="int" Nullable="false" />
           <Property Name="menuCreateDate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="menuLastModify" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="changePassLog">
+          <Key>
+            <PropertyRef Name="cpID" />
+          </Key>
+          <Property Name="cpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpMemberID" Type="int" Nullable="false" />
+          <Property Name="cpMemberName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cpMemberOldPassword" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="cpMemberNewPassword" Type="varchar" MaxLength="300" />
+          <Property Name="cpToken" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="cpApplyDate" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cpChangeDate" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="member">
           <Key>
@@ -104,11 +117,11 @@
           <EntitySet Name="adminAuthGroup" EntityType="Self.adminAuthGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="changePassLog" EntityType="Self.changePassLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClikGoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -213,7 +226,21 @@
           <EntitySet Name="adminMenu" EntityType="Self.adminMenu" />
           <EntitySet Name="member" EntityType="Self.member" />
           <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" />
+          <EntitySet Name="changePassLog" EntityType="ClikGoModel.changePassLog" />
         </EntityContainer>
+        <EntityType Name="changePassLog">
+          <Key>
+            <PropertyRef Name="cpID" />
+          </Key>
+          <Property Name="cpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpMemberID" Type="Int32" Nullable="false" />
+          <Property Name="cpMemberName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cpMemberOldPassword" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="cpMemberNewPassword" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="cpToken" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="cpApplyDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cpChangeDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -317,6 +344,20 @@
                 <ScalarProperty Name="malData" ColumnName="malData" />
                 <ScalarProperty Name="malResult" ColumnName="malResult" />
                 <ScalarProperty Name="malTime" ColumnName="malTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="changePassLog">
+            <EntityTypeMapping TypeName="ClikGoModel.changePassLog">
+              <MappingFragment StoreEntitySet="changePassLog">
+                <ScalarProperty Name="cpChangeDate" ColumnName="cpChangeDate" />
+                <ScalarProperty Name="cpApplyDate" ColumnName="cpApplyDate" />
+                <ScalarProperty Name="cpToken" ColumnName="cpToken" />
+                <ScalarProperty Name="cpMemberNewPassword" ColumnName="cpMemberNewPassword" />
+                <ScalarProperty Name="cpMemberOldPassword" ColumnName="cpMemberOldPassword" />
+                <ScalarProperty Name="cpMemberName" ColumnName="cpMemberName" />
+                <ScalarProperty Name="cpMemberID" ColumnName="cpMemberID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

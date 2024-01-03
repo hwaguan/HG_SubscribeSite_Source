@@ -19,6 +19,13 @@ namespace HG_Subscribe.Controllers
         private static Models.ClikGoEntities db = new Models.ClikGoEntities();
         private static Models.HGEntities dbHG = new Models.HGEntities();
 
+        #region 比對會員帳號是否存在
+        /// <summary>
+        /// 比對會員帳號是否存在
+        /// </summary>
+        /// <param name="mMail"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [HttpPost]
         public string verifyMember(string mMail, string token)
         {
@@ -39,7 +46,16 @@ namespace HG_Subscribe.Controllers
 
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
 
+        #region 註冊會員
+        /// <summary>
+        /// 註冊會員
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [HttpPost]
         public string registerMember(string account, string password, string token)
         {
@@ -50,23 +66,13 @@ namespace HG_Subscribe.Controllers
 
             using (db = new ClikGoEntities())
             {
-                int unixTimestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                 member newMember = new member();
-                string regusterTokenStr = unixTimestamp.ToString();
-                if (unixTimestamp % 2 == 0)
-                {
-                    regusterTokenStr = "0_" + regusterTokenStr;
-                }
-                else
-                {
-                    regusterTokenStr = regusterTokenStr + "_0";
-                }
 
                 newMember.mName = "訪客";
                 newMember.mMail = cryptor.encryptData(account);
                 newMember.mPassword = cryptor.encryptData(password);
                 newMember.mEnabled = 0;
-                newMember.mRegisterToken = cryptor.encryptData(regusterTokenStr);
+                newMember.mRegisterToken = getOTP(0);
                 newMember.mAddDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
                 db.member.Add(newMember);
@@ -79,7 +85,15 @@ namespace HG_Subscribe.Controllers
 
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
 
+        #region 啟用會員帳號
+        /// <summary>
+        /// 啟用會員帳號
+        /// </summary>
+        /// <param name="registerToken"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [HttpPost]
         public string initMember(string registerToken, string token)
         {
@@ -124,7 +138,8 @@ namespace HG_Subscribe.Controllers
                         result.message = registerToken + " init failed.";
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 result.result = false;
                 result.code = -1;
@@ -133,7 +148,9 @@ namespace HG_Subscribe.Controllers
 
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
 
+        #region 一般會員登入
         /// <summary>
         /// 一般會員登入
         /// </summary>
@@ -200,7 +217,9 @@ namespace HG_Subscribe.Controllers
             }
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
 
+        #region google 會員登入
         /// <summary>
         /// google 會員登入
         /// </summary>
@@ -232,7 +251,7 @@ namespace HG_Subscribe.Controllers
 
                 string accessResult = "Granted";
                 int resultCode = 200;
-                
+
                 //以使用者的 google CID 找尋是否符合
                 member user = db.member.Where(m => m.mGoogleAccount == cid).FirstOrDefault();
                 member newUser = new member();
@@ -242,7 +261,8 @@ namespace HG_Subscribe.Controllers
                     string clientMail = CMail != "" && CMail != null ? cryptor.encryptData(CMail) : "";
 
                     //若使用者資料中沒有 email 資訊, 則判定為新註冊的使用者, 直接將使用者資訊新增至資料庫
-                    if (clientMail == "") {
+                    if (clientMail == "")
+                    {
 
                         newUser.mName = CName;
                         newUser.mMail = "";
@@ -280,7 +300,7 @@ namespace HG_Subscribe.Controllers
                             db.member.Add(newUser);
                             db.SaveChanges();
                         }
-                        else 
+                        else
                         {
                             if (user.mEnabled > 0)//若以 email 比對尋獲使用者, 且使用者仍為有效狀態, 則更新使用者的 google 帳號相關資訊
                             {
@@ -336,5 +356,133 @@ namespace HG_Subscribe.Controllers
 
             return JsonConvert.SerializeObject(result);
         }
+        #endregion
+
+        #region 申請重置密碼
+        /// <summary>
+        /// 申請重置密碼
+        /// </summary>
+        /// <param name="mMail"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public string applyResetPassword(string mMail, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            try
+            {
+                using (db = new ClikGoEntities())
+                {
+                    member targetMember = db.member.Where(m => m.mMail == cryptor.encryptData(mMail)).FirstOrDefault();
+
+                    changePassLog CPL = new changePassLog();
+
+                    CPL.cpMemberID = targetMember.mID;
+                    CPL.cpMemberName = targetMember.mName;
+                    CPL.cpMemberOldPassword = targetMember.mPassword;
+                    CPL.cpToken = getOTP(1);
+                    CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    result.result = true;
+                    result.code = 200;
+                    result.message = true;
+                }
+            }catch (Exception e)
+            {
+                result.result = false;
+                result.code = 500;
+                result.message = e.Message;
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+        #region 重置會員登入密碼
+        [HttpPost]
+        public string resitMemberPassword(string logToken, string newPassword, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            using (db = new ClikGoEntities())
+            {
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        string encryptedPass = cryptor.encryptData(newPassword);
+                        changePassLog CPL = db.changePassLog.Where(c => c.cpToken == logToken).FirstOrDefault();
+                        CPL.cpMemberNewPassword = encryptedPass;
+                        CPL.cpChangeDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        member targetMember = db.member.Where(m => m.mID == CPL.cpMemberID).FirstOrDefault();
+                        targetMember.mPassword = encryptedPass;
+
+                        db.SaveChanges();
+                        dbContextTransaction.Commit();
+
+                        result.result = true;
+                        result.code = 200;
+                        result.message = "success";
+                    }
+                    catch (Exception e)
+                    {
+                        dbContextTransaction.Rollback();
+
+                        result.result = false;
+                        result.code=500;
+                        result.message = e.Message;
+                    }
+                }
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
+
+        #region 產生一次性交易金鑰
+        /// <summary>
+        /// 產生一次性交易金鑰
+        /// </summary>
+        /// <returns></returns>
+        private string getOTP(int type)
+        {
+            int unixTimestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            int applyCount = 0;
+
+            using (db = new ClikGoEntities())
+            {
+                string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+                if (type == 0)
+                {
+                    applyCount = db.member.Where(m => m.mAddDate.StartsWith(today)).Count();
+                }
+                else
+                {
+                    applyCount = db.changePassLog.Where(c => c.cpApplyDate.StartsWith(today)).Count();
+                }
+            }
+
+            string OTPStr= unixTimestamp.ToString();
+            if (unixTimestamp % 2 == 0)
+            {
+                OTPStr = string.Format("{0}_{1}", applyCount, OTPStr);
+            }
+            else
+            {
+                OTPStr = string.Format("{1}_{0}", applyCount, OTPStr);
+            }
+
+            return cryptor.encryptData(OTPStr);
+        }
+        #endregion
     }
 }

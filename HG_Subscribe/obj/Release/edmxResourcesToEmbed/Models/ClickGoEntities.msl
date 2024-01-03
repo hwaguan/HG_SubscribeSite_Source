@@ -101,5 +101,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="changePassLog">
+      <EntityTypeMapping TypeName="ClikGoModel.changePassLog">
+        <MappingFragment StoreEntitySet="changePassLog">
+          <ScalarProperty Name="cpChangeDate" ColumnName="cpChangeDate" />
+          <ScalarProperty Name="cpApplyDate" ColumnName="cpApplyDate" />
+          <ScalarProperty Name="cpToken" ColumnName="cpToken" />
+          <ScalarProperty Name="cpMemberNewPassword" ColumnName="cpMemberNewPassword" />
+          <ScalarProperty Name="cpMemberOldPassword" ColumnName="cpMemberOldPassword" />
+          <ScalarProperty Name="cpMemberName" ColumnName="cpMemberName" />
+          <ScalarProperty Name="cpMemberID" ColumnName="cpMemberID" />
+          <ScalarProperty Name="cpID" ColumnName="cpID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

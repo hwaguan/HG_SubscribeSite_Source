@@ -158,6 +158,9 @@
     <Compile Include="Models\adminMenu.cs">
       <DependentUpon>ClickGoEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\changePassLog.cs">
+      <DependentUpon>ClickGoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ClickGoEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
