@@ -321,27 +321,30 @@ namespace HG_Subscribe.Controllers
                 {
                     managerEngity mEntity = new managerEngity();
 
-                    MUSER hgUser = dbHG.MUSER.Where(u => u.U_Num == adm.admNo && u.LeaveDate == null).OrderByDescending(u => u.add_Date).FirstOrDefault();
-                    string Com = dbHG.MITEM.Where(i => i.mitcode == "COMID" && i.ditcode == hgUser.ComID).FirstOrDefault().ddesc;
-                    string Dep = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == hgUser.U_MDEP).FirstOrDefault().ddesc;
-                    string Title = dbHG.MITEM.Where(i => i.mitcode == "POSIT" && i.ditcode == hgUser.U_POSITION).FirstOrDefault().ddesc;
+                    using (var dbHG = new HGEntities())
+                    {
+                        MUSER hgUser = dbHG.MUSER.Where(u => u.U_Num == adm.admNo && u.LeaveDate == null).OrderByDescending(u => u.add_Date).FirstOrDefault();
+                        string Com = dbHG.MITEM.Where(i => i.mitcode == "COMID" && i.ditcode == hgUser.ComID).FirstOrDefault().ddesc;
+                        string Dep = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == hgUser.U_MDEP).FirstOrDefault().ddesc;
+                        string Title = dbHG.MITEM.Where(i => i.mitcode == "POSIT" && i.ditcode == hgUser.U_POSITION).FirstOrDefault().ddesc;
 
-                    mEntity.ID = adm.admID;
-                    mEntity.name = adm.admName;
-                    mEntity.No = adm.admNo;
-                    mEntity.Title = Title;
-                    mEntity.Co = Com;
-                    mEntity.Dep = Dep;
-                    mEntity.Account = cryptor.decryptData(adm.admAccount);
-                    mEntity.AccEncrypt = adm.admAccount;
-                    mEntity.Password = cryptor.decryptData(adm.admPassword);
-                    mEntity.PswEncrypt = adm.admPassword;
-                    mEntity.Email = adm.admMail;
-                    mEntity.Ext = adm.admExt;
-                    mEntity.AuthGroup = adm.admGroup;
-                    mEntity.enabled = adm.admEnabled;
+                        mEntity.ID = adm.admID;
+                        mEntity.name = adm.admName;
+                        mEntity.No = adm.admNo;
+                        mEntity.Title = Title;
+                        mEntity.Co = Com;
+                        mEntity.Dep = Dep;
+                        mEntity.Account = cryptor.decryptData(adm.admAccount);
+                        mEntity.AccEncrypt = adm.admAccount;
+                        mEntity.Password = cryptor.decryptData(adm.admPassword);
+                        mEntity.PswEncrypt = adm.admPassword;
+                        mEntity.Email = adm.admMail;
+                        mEntity.Ext = adm.admExt;
+                        mEntity.AuthGroup = adm.admGroup;
+                        mEntity.enabled = adm.admEnabled;
 
-                    mList.Add(mEntity);
+                        mList.Add(mEntity);
+                    }
                 });
 
                 result.result = true;
