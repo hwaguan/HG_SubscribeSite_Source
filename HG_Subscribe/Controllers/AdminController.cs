@@ -43,25 +43,28 @@ namespace HG_Subscribe.Controllers
                 List<empObj> empList = new List<empObj>();
                 var sAdmins = db.administrator.Select(a => a.admNo).ToList();
 
-                var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate == null && u.del_tag == "0" && u.U_Tel != "" && !sAdmins.Any(a => a == u.U_Num)).Select(u => new { u.U_Num, u.U_Name, u.U_Tel, u.ComID, u.U_MDEP, u.EMail }).Distinct().OrderBy(u => u.ComID).ToList();
-
-                foreach (var item in mUSERs)
+                using (var dbHG = new Models.HGEntities())
                 {
-                    empObj emp = new empObj();
+                    var mUSERs = dbHG.MUSER.Where(u => u.LeaveDate == null && u.del_tag == "0" && u.U_Tel != "" && !sAdmins.Any(a => a == u.U_Num)).Select(u => new { u.U_Num, u.U_Name, u.U_Tel, u.ComID, u.U_MDEP, u.EMail }).Distinct().OrderBy(u => u.ComID).ToList();
 
-                    var mCo = dbHG.MITEM.Where(i => i.ditcode == item.ComID && i.mitcode == "COMID").FirstOrDefault();
-                    var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP && i.mitcode == "DEPAR").FirstOrDefault();
+                    foreach (var item in mUSERs)
+                    {
+                        empObj emp = new empObj();
 
-                    emp.empNo = item.U_Num;
-                    emp.empName = item.U_Name;
-                    emp.empBranch = item.ComID;
-                    emp.empBranchName = mCo.ddesc;
-                    emp.empDep = item.U_MDEP;
-                    emp.empDepName = mDep.ddesc;
-                    emp.empExt = item.U_Tel;
-                    emp.empMail = item.EMail;
+                        var mCo = dbHG.MITEM.Where(i => i.ditcode == item.ComID && i.mitcode == "COMID").FirstOrDefault();
+                        var mDep = dbHG.MITEM.Where(i => i.ditcode == item.U_MDEP && i.mitcode == "DEPAR").FirstOrDefault();
 
-                    empList.Add(emp);
+                        emp.empNo = item.U_Num;
+                        emp.empName = item.U_Name;
+                        emp.empBranch = item.ComID;
+                        emp.empBranchName = mCo.ddesc;
+                        emp.empDep = item.U_MDEP;
+                        emp.empDepName = mDep.ddesc;
+                        emp.empExt = item.U_Tel;
+                        emp.empMail = item.EMail;
+
+                        empList.Add(emp);
+                    }
                 }
 
                 result.result = true;
@@ -103,7 +106,7 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
-            using (dbHG = new HGEntities())
+            using (var dbHG = new HGEntities())
             {
                 List<MITEM> depList = dbHG.MITEM.Where(c => c.mitcode == "DEPAR" && c.del_tag == "0" && c.ditcode != "0000").ToList();
                 List<depObj> resultList = new List<depObj>();
@@ -393,26 +396,28 @@ namespace HG_Subscribe.Controllers
 
                 administrator admData = db.administrator.Where(a => a.admID == mid).FirstOrDefault();
 
-                dbHG = new HGEntities();
-                string depName = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == admData.admDep).Select(i => i.ddesc).FirstOrDefault();
-                string[] authArr = admData.admAuthority == "" || admData.admAuthority == null ? new string[0] : admData.admAuthority.Split(',');
+                using (var dbHG = new HGEntities())
+                {
+                    string depName = dbHG.MITEM.Where(i => i.mitcode == "DEPAR" && i.ditcode == admData.admDep).Select(i => i.ddesc).FirstOrDefault();
+                    string[] authArr = admData.admAuthority == "" || admData.admAuthority == null ? new string[0] : admData.admAuthority.Split(',');
 
-                admObj.empID = mid;
-                admObj.empNo = admData.admNo;
-                admObj.empName = admData.admName;
-                admObj.empBranch = admData.admCorp;
-                admObj.empDep = admData.admDep;
-                admObj.empDepName = depName;
-                admObj.empExt = admData.admExt;
-                admObj.empMail = admData.admMail;
-                admObj.empGroup = admData.admGroup;
-                admObj.empAuth = authArr;
+                    admObj.empID = mid;
+                    admObj.empNo = admData.admNo;
+                    admObj.empName = admData.admName;
+                    admObj.empBranch = admData.admCorp;
+                    admObj.empDep = admData.admDep;
+                    admObj.empDepName = depName;
+                    admObj.empExt = admData.admExt;
+                    admObj.empMail = admData.admMail;
+                    admObj.empGroup = admData.admGroup;
+                    admObj.empAuth = authArr;
 
-                result.result = true;
-                result.code = 200;
-                result.message = admObj;
+                    result.result = true;
+                    result.code = 200;
+                    result.message = admObj;
 
-                dbHG.Dispose();
+                    dbHG.Dispose();
+                }
             }
 
             return JsonConvert.SerializeObject(result);
