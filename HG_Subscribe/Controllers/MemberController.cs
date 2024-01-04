@@ -407,7 +407,8 @@ namespace HG_Subscribe.Controllers
                         result.message = false;
                     }
                 }
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 result.result = false;
                 result.code = 500;
@@ -434,7 +435,7 @@ namespace HG_Subscribe.Controllers
                     changePassLog CPL = db.changePassLog.Where(c => c.cpToken == resetKey && c.cpChangeDate == null && c.cpMemberNewPassword == null).FirstOrDefault();
                     cpResponse CPR = new cpResponse();
 
-                    if ( CPL != null )
+                    if (CPL != null)
                     {
                         CPR.cpID = CPL.cpID;
                         CPR.mID = CPL.cpMemberID;
@@ -453,7 +454,7 @@ namespace HG_Subscribe.Controllers
             }
             catch (Exception ex)
             {
-                result.result= false;
+                result.result = false;
                 result.code = 500;
                 result.message = ex.Message;
             }
@@ -466,10 +467,10 @@ namespace HG_Subscribe.Controllers
             public int cpID { get; set; }
             public int mID { get; set; }
         }
-            #endregion
+        #endregion
 
-            #region 重置會員登入密碼
-            [HttpPost]
+        #region 重置會員登入密碼
+        [HttpPost]
         public string resetMemberPassword(string logToken, string newPassword, string token)
         {
             //驗證交易金鑰
@@ -503,7 +504,7 @@ namespace HG_Subscribe.Controllers
                         dbContextTransaction.Rollback();
 
                         result.result = false;
-                        result.code=500;
+                        result.code = 500;
                         result.message = e.Message;
                     }
                 }
@@ -537,7 +538,7 @@ namespace HG_Subscribe.Controllers
                 }
             }
 
-            string OTPStr= unixTimestamp.ToString();
+            string OTPStr = unixTimestamp.ToString();
             if (unixTimestamp % 2 == 0)
             {
                 OTPStr = string.Format("{0}_{1}", applyCount, OTPStr);
