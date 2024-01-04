@@ -418,8 +418,58 @@ namespace HG_Subscribe.Controllers
         }
         #endregion
 
-        #region 重置會員登入密碼
+        #region 比對重置金鑰
         [HttpPost]
+        public string verifyResetKey(string resetKey, string token)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            try
+            {
+                using (db = new ClikGoEntities())
+                {
+                    changePassLog CPL = db.changePassLog.Where(c => c.cpToken == resetKey).FirstOrDefault();
+                    cpResponse CPR = new cpResponse();
+
+                    if ( CPL != null )
+                    {
+                        CPR.cpID = CPL.cpID;
+                        CPR.mID = CPL.cpMemberID;
+
+                        result.result = true;
+                        result.code = 200;
+                        result.message = CPR;
+                    }
+                    else
+                    {
+                        result.result = false;
+                        result.code = 666;
+                        result.message = "reject";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.result= false;
+                result.code = 500;
+                result.message = ex.Message;
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        private class cpResponse
+        {
+            public int cpID { get; set; }
+            public int mID { get; set; }
+        }
+            #endregion
+
+            #region 重置會員登入密碼
+            [HttpPost]
         public string resetMemberPassword(string logToken, string newPassword, string token)
         {
             //驗證交易金鑰
