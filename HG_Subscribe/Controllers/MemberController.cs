@@ -431,7 +431,7 @@ namespace HG_Subscribe.Controllers
             {
                 using (db = new ClikGoEntities())
                 {
-                    changePassLog CPL = db.changePassLog.Where(c => c.cpToken == resetKey).FirstOrDefault();
+                    changePassLog CPL = db.changePassLog.Where(c => c.cpToken == resetKey && c.cpChangeDate == null && c.cpMemberNewPassword == null).FirstOrDefault();
                     cpResponse CPR = new cpResponse();
 
                     if ( CPL != null )
