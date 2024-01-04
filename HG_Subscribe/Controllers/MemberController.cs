@@ -488,9 +488,11 @@ namespace HG_Subscribe.Controllers
                         changePassLog CPL = db.changePassLog.Where(c => c.cpToken == logToken).FirstOrDefault();
                         CPL.cpMemberNewPassword = encryptedPass;
                         CPL.cpChangeDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        db.Entry(CPL).State = System.Data.Entity.EntityState.Modified;
 
                         member targetMember = db.member.Where(m => m.mID == CPL.cpMemberID).FirstOrDefault();
                         targetMember.mPassword = encryptedPass;
+                        db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
 
                         db.SaveChanges();
                         dbContextTransaction.Commit();
