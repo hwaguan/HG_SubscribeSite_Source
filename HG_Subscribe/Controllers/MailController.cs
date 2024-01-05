@@ -25,6 +25,7 @@ namespace HG_Subscribe.Controllers
             private string clientKey = "NDAyODgxM2I4NmMyMjdkNzAxODZjNDU1ZjIyNjA2NzktMTY4MDA2MDkyNS0x";
             public mailSender(string senderName, string senderMail, List<mailReceiver> receiver, string subject, string content)
             {
+                mailBody = new mailObj();
                 mailBody.fromName = senderName;
                 mailBody.fromAddress = senderMail;
                 mailBody.subject = subject;
@@ -48,10 +49,12 @@ namespace HG_Subscribe.Controllers
                         mailSendingLog MSL = new mailSendingLog();
                         MSL.slSenderMail = mailBody.fromAddress;
                         MSL.slReceiverMail = mailBody.recipients[0].address;
+                        MSL.slSubject = mailBody.subject;
+                        MSL.slContent = mailBody.content;
                         MSL.slSendingTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         MSL.slStatus = 0;
                         MSL.slType = "註冊完成通知";
-                        db.Entry(MSL).State = System.Data.Entity.EntityState.Modified;
+                        db.mailSendingLog.Add(MSL);
                         db.SaveChanges();
 
                         var request = new HttpRequestMessage(HttpMethod.Post, serverURL);
