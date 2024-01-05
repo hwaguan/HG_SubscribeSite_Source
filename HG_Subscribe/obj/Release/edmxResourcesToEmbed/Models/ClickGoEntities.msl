@@ -115,5 +115,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="mailSendingLog">
+      <EntityTypeMapping TypeName="ClikGoModel.mailSendingLog">
+        <MappingFragment StoreEntitySet="mailSendingLog">
+          <ScalarProperty Name="slReceieveTime" ColumnName="slReceieveTime" />
+          <ScalarProperty Name="slSendingTime" ColumnName="slSendingTime" />
+          <ScalarProperty Name="slStatus" ColumnName="slStatus" />
+          <ScalarProperty Name="slContent" ColumnName="slContent" />
+          <ScalarProperty Name="slSubject" ColumnName="slSubject" />
+          <ScalarProperty Name="slReceiverMail" ColumnName="slReceiverMail" />
+          <ScalarProperty Name="slSenderMail" ColumnName="slSenderMail" />
+          <ScalarProperty Name="slType" ColumnName="slType" />
+          <ScalarProperty Name="slID" ColumnName="slID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

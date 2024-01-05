@@ -144,8 +144,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\SecretController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +192,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HGEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mailSendingLog.cs">
+      <DependentUpon>ClickGoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\member.cs">
       <DependentUpon>ClickGoEntities.tt</DependentUpon>
@@ -294,8 +299,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Mail\" />
     <Folder Include="Views\Member\" />
     <Folder Include="Views\Secret\" />
+    <Folder Include="Views\System\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -31,5 +31,6 @@ namespace HG_Subscribe.Models
         public virtual DbSet<member> member { get; set; }
         public virtual DbSet<memberAccessLog> memberAccessLog { get; set; }
         public virtual DbSet<changePassLog> changePassLog { get; set; }
+        public virtual DbSet<mailSendingLog> mailSendingLog { get; set; }
     }
 }

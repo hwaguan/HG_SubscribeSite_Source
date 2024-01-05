@@ -57,6 +57,20 @@
     <Property Name="cpApplyDate" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="cpChangeDate" Type="varchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="mailSendingLog">
+    <Key>
+      <PropertyRef Name="slID" />
+    </Key>
+    <Property Name="slID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="slType" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="slSenderMail" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="slReceiverMail" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="slSubject" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="slContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="slStatus" Type="int" Nullable="false" />
+    <Property Name="slSendingTime" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="slReceieveTime" Type="varchar" MaxLength="20" />
+  </EntityType>
   <EntityType Name="member">
     <Key>
       <PropertyRef Name="mID" />
@@ -113,6 +127,7 @@
     <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="changePassLog" EntityType="Self.changePassLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mailSendingLog" EntityType="Self.mailSendingLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

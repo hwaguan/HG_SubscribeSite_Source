@@ -62,6 +62,20 @@
           <Property Name="cpApplyDate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="cpChangeDate" Type="varchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="mailSendingLog">
+          <Key>
+            <PropertyRef Name="slID" />
+          </Key>
+          <Property Name="slID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slType" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="slSenderMail" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="slReceiverMail" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="slSubject" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="slContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="slStatus" Type="int" Nullable="false" />
+          <Property Name="slSendingTime" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="slReceieveTime" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="member">
           <Key>
             <PropertyRef Name="mID" />
@@ -118,6 +132,7 @@
           <EntitySet Name="administrator" EntityType="Self.administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adminMenu" EntityType="Self.adminMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="changePassLog" EntityType="Self.changePassLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mailSendingLog" EntityType="Self.mailSendingLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -227,6 +242,7 @@
           <EntitySet Name="member" EntityType="Self.member" />
           <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" />
           <EntitySet Name="changePassLog" EntityType="ClikGoModel.changePassLog" />
+          <EntitySet Name="mailSendingLog" EntityType="ClikGoModel.mailSendingLog" />
         </EntityContainer>
         <EntityType Name="changePassLog">
           <Key>
@@ -240,6 +256,20 @@
           <Property Name="cpToken" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="cpApplyDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="cpChangeDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mailSendingLog">
+          <Key>
+            <PropertyRef Name="slID" />
+          </Key>
+          <Property Name="slID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slType" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="slSenderMail" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="slReceiverMail" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="slSubject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="slContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="slStatus" Type="Int32" Nullable="false" />
+          <Property Name="slSendingTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="slReceieveTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -358,6 +388,21 @@
                 <ScalarProperty Name="cpMemberName" ColumnName="cpMemberName" />
                 <ScalarProperty Name="cpMemberID" ColumnName="cpMemberID" />
                 <ScalarProperty Name="cpID" ColumnName="cpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mailSendingLog">
+            <EntityTypeMapping TypeName="ClikGoModel.mailSendingLog">
+              <MappingFragment StoreEntitySet="mailSendingLog">
+                <ScalarProperty Name="slReceieveTime" ColumnName="slReceieveTime" />
+                <ScalarProperty Name="slSendingTime" ColumnName="slSendingTime" />
+                <ScalarProperty Name="slStatus" ColumnName="slStatus" />
+                <ScalarProperty Name="slContent" ColumnName="slContent" />
+                <ScalarProperty Name="slSubject" ColumnName="slSubject" />
+                <ScalarProperty Name="slReceiverMail" ColumnName="slReceiverMail" />
+                <ScalarProperty Name="slSenderMail" ColumnName="slSenderMail" />
+                <ScalarProperty Name="slType" ColumnName="slType" />
+                <ScalarProperty Name="slID" ColumnName="slID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

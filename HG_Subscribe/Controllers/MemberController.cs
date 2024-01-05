@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Security.Principal;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -77,6 +78,32 @@ namespace HG_Subscribe.Controllers
 
                 db.member.Add(newMember);
                 db.SaveChanges();
+
+                string senderName = "華冠投顧 ColickGo";
+                string senderMail = "service.clickgo@hwa-guan.com.tw";
+                string subject = "華冠投顧 ClickGO - 會員註冊完成通知";
+                string mainContent = "";
+                string initStr = "http://192.168.1.26:8014/init" + newMember.mRegisterToken;
+
+                StringBuilder  SB = new StringBuilder();
+                SB.Append("<html><body>");
+                SB.Append("<div>敬愛的會員 您好，<div>");
+                SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
+                SB.Append("<div style='padding-top : 10px;'>以下是您的註冊資訊，請妥善保存並點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
+                SB.Append("<div style='padding-top : 10px;'>帳號：" + account + "</div>");
+                SB.Append("<div style='padding-top : 10px;'>密碼：" + password + "</div>");
+                SB.Append("<div style='padding-top : 10px;'>以下是您的註冊資訊，請妥善保存並點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
+                SB.Append("<div style='padding-top : 10px;'><a href='" + initStr + "'><h3>" + initStr + "</h3></a></div>");
+                SB.Append("<div style='padding-top : 10px;'><a href='\" + initStr + \"'><div style='padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>啟用帳號</div></a></div>");
+                SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
+                SB.Append("</body></html>");
+                mainContent = SB.ToString();
+
+                List<MailController.mailSender.mailReceiver> receivers = new List<MailController.mailSender.mailReceiver>();
+                receivers.Add(new MailController.mailSender.mailReceiver("貴會員", account));
+
+                MailController.mailSender mailSender = new MailController.mailSender(senderName, senderMail, receivers, subject, mainContent);
+                mailSender.send();
 
                 result.result = true;
                 result.code = 200;

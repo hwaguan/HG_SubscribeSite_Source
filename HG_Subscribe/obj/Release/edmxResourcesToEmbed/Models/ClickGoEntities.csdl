@@ -102,6 +102,7 @@
     <EntitySet Name="member" EntityType="Self.member" />
     <EntitySet Name="memberAccessLog" EntityType="Self.memberAccessLog" />
     <EntitySet Name="changePassLog" EntityType="ClikGoModel.changePassLog" />
+    <EntitySet Name="mailSendingLog" EntityType="ClikGoModel.mailSendingLog" />
   </EntityContainer>
   <EntityType Name="changePassLog">
     <Key>
@@ -115,5 +116,19 @@
     <Property Name="cpToken" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="cpApplyDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cpChangeDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mailSendingLog">
+    <Key>
+      <PropertyRef Name="slID" />
+    </Key>
+    <Property Name="slID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="slType" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="slSenderMail" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="slReceiverMail" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="slSubject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="slContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="slStatus" Type="Int32" Nullable="false" />
+    <Property Name="slSendingTime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="slReceieveTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

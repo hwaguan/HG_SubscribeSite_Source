@@ -736,5 +736,26 @@ namespace HG_Subscribe.Controllers
             return JsonConvert.SerializeObject(result);
         }
         #endregion
+
+        #region 取得會員總數
+        [HttpPost]
+        public string getMemberTotal(string token, bool showAll = false)
+        {
+            //驗證交易金鑰
+            Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
+            if (!RC.result) return JsonConvert.SerializeObject(RC);
+
+            Cryptor.apiResultObj result = new Cryptor.apiResultObj();
+
+            using (db = new ClikGoEntities())
+            {
+                result.result = true;
+                result.code = 200;
+                result.message = showAll ? db.member.Count() : db.member.Where(m => m.mEnabled > 0).Count();
+            }
+
+            return JsonConvert.SerializeObject(result);
+        }
+        #endregion
     }
 }
