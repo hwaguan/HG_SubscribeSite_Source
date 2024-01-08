@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
+using System.Web.Configuration;
 
 namespace HG_Subscribe.Controllers
 {
@@ -23,6 +24,7 @@ namespace HG_Subscribe.Controllers
         private static Cryptor cryptor = new Cryptor();
         private static Models.ClikGoEntities db = new Models.ClikGoEntities();
         private static Models.HGEntities dbHG = new Models.HGEntities();
+        private static string webHost = WebConfigurationManager.AppSettings["WebHost"];
 
         #region 比對會員帳號是否存在
         /// <summary>
@@ -91,7 +93,7 @@ namespace HG_Subscribe.Controllers
                         string senderMail = "service.clickgo@hwa-guan.com.tw";
                         string subject = "華冠投顧 ClickGO - 會員註冊完成通知";
                         string mainContent = "";
-                        string initStr = "http://192.168.1.26:8014/init/" + newMember.mRegisterToken;
+                        string initStr = string.Format("{0}/init/{1}", webHost,newMember.mRegisterToken);
 
                         StringBuilder SB = new StringBuilder();
                         SB.Append("<html lang = 'zh'>");
@@ -449,7 +451,7 @@ namespace HG_Subscribe.Controllers
                             string senderMail = "service.clickgo@hwa-guan.com.tw";
                             string subject = "華冠投顧 ClickGO - 會員重置密碼申請";
                             string mainContent = "";
-                            string resetStr = "http://192.168.1.26:8014/resetPassword/" + applyToken;
+                            string resetStr = string.Format("{0}/resetMemberPassword/{1}", webHost, applyToken);
 
                             StringBuilder SB = new StringBuilder();
                             SB.Append("<html lang = 'zh'>");
@@ -549,7 +551,7 @@ namespace HG_Subscribe.Controllers
 
         #region 重置會員登入密碼
         [HttpPost]
-        public string resetMemberPassword(string logToken, string newPassword, string token)
+        public async Task<string> resetMemberPassword(string logToken, string newPassword, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -572,6 +574,29 @@ namespace HG_Subscribe.Controllers
                         targetMember.mPassword = encryptedPass;
                         db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
+
+                        string senderName = "華冠投顧 ColickGo";
+                        string senderMail = "service.clickgo@hwa-guan.com.tw";
+                        string subject = "華冠投顧 ClickGO - 會員重置密碼設定完成通知";
+                        string mainContent = "";
+
+                        StringBuilder SB = new StringBuilder();
+                        SB.Append("<html lang = 'zh'>");
+                        SB.Append("<head><meta charset=\"UTF-8\" /></head>");
+                        SB.Append("<body>");
+                        SB.Append("<div>敬愛的會員 您好，<div>");
+                        SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
+                        SB.Append("<div style='padding-top : 10px;'>您的密碼已經重新設定完成，您的新密碼是 " + newPassword + "請牢記並妥善保存。</div>");
+                        SB.Append("<div style='padding-top : 10px;'><a href='" + webHost + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>Click GO!!</div></a></div>");
+                        SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
+                        SB.Append("</body></html>");
+                        mainContent = SB.ToString();
+
+                        List<MailController.mailSender.mailReceiver> receivers = new List<MailController.mailSender.mailReceiver>();
+                        receivers.Add(new MailController.mailSender.mailReceiver(targetMember.mName, targetMember.mMail));
+
+                        MailController.mailSender mailSender = new MailController.mailSender(senderName, senderMail, receivers, subject, mainContent);
+                        await mailSender.send();
 
                         dbContextTransaction.Commit();
 
