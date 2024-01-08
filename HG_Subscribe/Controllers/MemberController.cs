@@ -419,11 +419,11 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
-            using (var dbContextTransaction = db.Database.BeginTransaction())
+            using (db = new ClikGoEntities())
             {
-                try
+                using (var dbContextTransaction = db.Database.BeginTransaction())
                 {
-                    using (db = new ClikGoEntities())
+                    try
                     {
                         string encryptMail = cryptor.encryptData(mMail);
                         string limitDate = DateTime.Now.ToString("yyyy-MM");
@@ -480,16 +480,16 @@ namespace HG_Subscribe.Controllers
                             result.code = 666;
                             result.message = false;
                         }
-                    }
 
-                    dbContextTransaction.Commit();
-                }
-                catch (Exception e)
-                {
-                    dbContextTransaction.Rollback();
-                    result.result = false;
-                    result.code = 500;
-                    result.message = e.Message;
+                        dbContextTransaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        dbContextTransaction.Rollback();
+                        result.result = false;
+                        result.code = 500;
+                        result.message = e.Message;
+                    }
                 }
             }
 
