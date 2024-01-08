@@ -67,9 +67,13 @@
     <Property Name="slReceiverMail" Type="varchar" MaxLength="300" Nullable="false" />
     <Property Name="slSubject" Type="nvarchar(max)" Nullable="false" />
     <Property Name="slContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="slResult" Type="varchar(max)" />
     <Property Name="slStatus" Type="int" Nullable="false" />
     <Property Name="slSendingTime" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="slFinishTime" Type="varchar" MaxLength="20" />
     <Property Name="slReceieveTime" Type="varchar" MaxLength="20" />
+    <Property Name="slOpenTime" Type="varchar" MaxLength="20" />
+    <Property Name="slClickTime" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="member">
     <Key>

@@ -48,6 +48,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="changePassLog">
+      <EntityTypeMapping TypeName="ClikGoModel.changePassLog">
+        <MappingFragment StoreEntitySet="changePassLog">
+          <ScalarProperty Name="cpID" ColumnName="cpID" />
+          <ScalarProperty Name="cpMemberID" ColumnName="cpMemberID" />
+          <ScalarProperty Name="cpMemberName" ColumnName="cpMemberName" />
+          <ScalarProperty Name="cpMemberOldPassword" ColumnName="cpMemberOldPassword" />
+          <ScalarProperty Name="cpMemberNewPassword" ColumnName="cpMemberNewPassword" />
+          <ScalarProperty Name="cpToken" ColumnName="cpToken" />
+          <ScalarProperty Name="cpApplyDate" ColumnName="cpApplyDate" />
+          <ScalarProperty Name="cpChangeDate" ColumnName="cpChangeDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mailSendingLog">
+      <EntityTypeMapping TypeName="ClikGoModel.mailSendingLog">
+        <MappingFragment StoreEntitySet="mailSendingLog">
+          <ScalarProperty Name="slID" ColumnName="slID" />
+          <ScalarProperty Name="slType" ColumnName="slType" />
+          <ScalarProperty Name="slSenderMail" ColumnName="slSenderMail" />
+          <ScalarProperty Name="slReceiverMail" ColumnName="slReceiverMail" />
+          <ScalarProperty Name="slSubject" ColumnName="slSubject" />
+          <ScalarProperty Name="slContent" ColumnName="slContent" />
+          <ScalarProperty Name="slResult" ColumnName="slResult" />
+          <ScalarProperty Name="slStatus" ColumnName="slStatus" />
+          <ScalarProperty Name="slSendingTime" ColumnName="slSendingTime" />
+          <ScalarProperty Name="slFinishTime" ColumnName="slFinishTime" />
+          <ScalarProperty Name="slReceieveTime" ColumnName="slReceieveTime" />
+          <ScalarProperty Name="slOpenTime" ColumnName="slOpenTime" />
+          <ScalarProperty Name="slClickTime" ColumnName="slClickTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="member">
       <EntityTypeMapping TypeName="ClikGoModel.member">
         <MappingFragment StoreEntitySet="member">
@@ -98,35 +131,6 @@
           <ScalarProperty Name="malData" ColumnName="malData" />
           <ScalarProperty Name="malResult" ColumnName="malResult" />
           <ScalarProperty Name="malTime" ColumnName="malTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="changePassLog">
-      <EntityTypeMapping TypeName="ClikGoModel.changePassLog">
-        <MappingFragment StoreEntitySet="changePassLog">
-          <ScalarProperty Name="cpChangeDate" ColumnName="cpChangeDate" />
-          <ScalarProperty Name="cpApplyDate" ColumnName="cpApplyDate" />
-          <ScalarProperty Name="cpToken" ColumnName="cpToken" />
-          <ScalarProperty Name="cpMemberNewPassword" ColumnName="cpMemberNewPassword" />
-          <ScalarProperty Name="cpMemberOldPassword" ColumnName="cpMemberOldPassword" />
-          <ScalarProperty Name="cpMemberName" ColumnName="cpMemberName" />
-          <ScalarProperty Name="cpMemberID" ColumnName="cpMemberID" />
-          <ScalarProperty Name="cpID" ColumnName="cpID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="mailSendingLog">
-      <EntityTypeMapping TypeName="ClikGoModel.mailSendingLog">
-        <MappingFragment StoreEntitySet="mailSendingLog">
-          <ScalarProperty Name="slReceieveTime" ColumnName="slReceieveTime" />
-          <ScalarProperty Name="slSendingTime" ColumnName="slSendingTime" />
-          <ScalarProperty Name="slStatus" ColumnName="slStatus" />
-          <ScalarProperty Name="slContent" ColumnName="slContent" />
-          <ScalarProperty Name="slSubject" ColumnName="slSubject" />
-          <ScalarProperty Name="slReceiverMail" ColumnName="slReceiverMail" />
-          <ScalarProperty Name="slSenderMail" ColumnName="slSenderMail" />
-          <ScalarProperty Name="slType" ColumnName="slType" />
-          <ScalarProperty Name="slID" ColumnName="slID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -20,8 +20,12 @@ namespace HG_Subscribe.Models
         public string slReceiverMail { get; set; }
         public string slSubject { get; set; }
         public string slContent { get; set; }
+        public string slResult { get; set; }
         public int slStatus { get; set; }
         public string slSendingTime { get; set; }
+        public string slFinishTime { get; set; }
         public string slReceieveTime { get; set; }
+        public string slOpenTime { get; set; }
+        public string slClickTime { get; set; }
     }
 }

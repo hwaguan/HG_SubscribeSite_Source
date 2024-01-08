@@ -28,9 +28,9 @@ namespace HG_Subscribe.Models
         public virtual DbSet<adminAuthGroup> adminAuthGroup { get; set; }
         public virtual DbSet<administrator> administrator { get; set; }
         public virtual DbSet<adminMenu> adminMenu { get; set; }
-        public virtual DbSet<member> member { get; set; }
-        public virtual DbSet<memberAccessLog> memberAccessLog { get; set; }
         public virtual DbSet<changePassLog> changePassLog { get; set; }
         public virtual DbSet<mailSendingLog> mailSendingLog { get; set; }
+        public virtual DbSet<member> member { get; set; }
+        public virtual DbSet<memberAccessLog> memberAccessLog { get; set; }
     }
 }
