@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
@@ -93,13 +94,16 @@ namespace HG_Subscribe.Controllers
                         string initStr = "http://192.168.1.26:8014/init/" + newMember.mRegisterToken;
 
                         StringBuilder SB = new StringBuilder();
-                        SB.Append("<html><body>");
+                        SB.Append("< !doctype html >");
+                        SB.Append("<html lang = 'zh'>");
+                        SB.Append("<head><meta charset=\"UTF-8\" /></head>");
+                        SB.Append("<body>");
                         SB.Append("<div>敬愛的會員 您好，<div>");
                         SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
                         SB.Append("<div style='padding-top : 10px;'>以下是您的註冊資訊，請妥善保存並點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
                         SB.Append("<div style='padding-top : 10px;'>帳號：" + account + "</div>");
                         SB.Append("<div style='padding-top : 10px;'>密碼：" + password + "</div>");
-                        SB.Append("<div style='padding-top : 10px;'>以下是您的註冊資訊，請妥善保存並點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
+                        SB.Append("<div style='padding-top : 10px;'>請點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
                         SB.Append("<div style='padding-top : 10px;'><a href='" + initStr + "'><h3>" + initStr + "</h3></a></div>");
                         SB.Append("<div style='padding-top : 10px;'><a href='\" + initStr + \"'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>啟用帳號</div></a></div>");
                         SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");

@@ -40,6 +40,7 @@ namespace HG_Subscribe.Controllers
 
             public async Task<string> send()
             {
+                string result = "";
                 string data = JsonConvert.SerializeObject(mailBody);
 
                 using (HttpClient client = new HttpClient())
@@ -63,9 +64,15 @@ namespace HG_Subscribe.Controllers
                         request.Content = new StringContent(data, Encoding.UTF8, "application/json");
 
                         var response = await client.SendAsync(request);
-                        return await response.Content.ReadAsStringAsync();
+                        result = await response.Content.ReadAsStringAsync();
+
+                        MSL.slContent = result;
+                        db.Entry(MSL).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
+
+                return result;
             }
 
             public class mailReceiver
