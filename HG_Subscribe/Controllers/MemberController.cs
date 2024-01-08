@@ -104,7 +104,7 @@ namespace HG_Subscribe.Controllers
                         SB.Append("<div style='padding-top : 10px;'>密碼：" + password + "</div>");
                         SB.Append("<div style='padding-top : 10px;'>請點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
                         SB.Append("<div style='padding-top : 10px;'><a href='" + initStr + "'><h3>" + initStr + "</h3></a></div>");
-                        SB.Append("<div style='padding-top : 10px;'><a href='\" + initStr + \"'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>啟用帳號</div></a></div>");
+                        SB.Append("<div style='padding-top : 10px;'><a href='" + initStr + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>啟用帳號</div></a></div>");
                         SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
                         SB.Append("</body></html>");
                         mainContent = SB.ToString();
@@ -412,7 +412,7 @@ namespace HG_Subscribe.Controllers
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpPost]
-        public string applyResetPassword(string mMail, string token)
+        public async Task<string> applyResetPassword(string mMail, string token)
         {
             //驗證交易金鑰
             Cryptor.apiResultObj RC = cryptor.verifyAPISecret(token);
@@ -432,15 +432,42 @@ namespace HG_Subscribe.Controllers
                     if (applyCount < 3)
                     {
                         changePassLog CPL = new changePassLog();
+                        string applyToken = getOTP(1);
 
                         CPL.cpMemberID = targetMember.mID;
                         CPL.cpMemberName = targetMember.mName;
                         CPL.cpMemberOldPassword = targetMember.mPassword;
-                        CPL.cpToken = getOTP(1);
+                        CPL.cpToken = applyToken;
                         CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
                         db.changePassLog.Add(CPL);
                         db.SaveChanges();
+
+                        string senderName = "華冠投顧 ColickGo";
+                        string senderMail = "service.clickgo@hwa-guan.com.tw";
+                        string subject = "華冠投顧 ClickGO - 會員重置密碼申請";
+                        string mainContent = "";
+                        string resitStr = "http://192.168.1.26:8014/resetPassword/" + applyToken;
+
+                        StringBuilder SB = new StringBuilder();
+                        SB.Append("<html lang = 'zh'>");
+                        SB.Append("<head><meta charset=\"UTF-8\" /></head>");
+                        SB.Append("<body>");
+                        SB.Append("<div>敬愛的會員 您好，<div>");
+                        SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
+                        SB.Append("<div style='padding-top : 10px;'>我們已經收到您所提出的重置密碼申請，請您點擊以下連結或\"立即重置\"按鈕，進行新密碼的設置。</div>");
+                        SB.Append("<div style='padding-top : 10px;'><a href='" + resitStr + "'><h3>" + resitStr + "</h3></a></div>");
+                        SB.Append("<div style='padding-top : 10px;'><a href='" + resitStr + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>立即重置</div></a></div>");
+                        SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
+                        SB.Append("</body></html>");
+                        mainContent = SB.ToString();
+
+                        List<MailController.mailSender.mailReceiver> receivers = new List<MailController.mailSender.mailReceiver>();
+                        receivers.Add(new MailController.mailSender.mailReceiver(targetMember.mName, targetMember.mMail));
+
+
+                        MailController.mailSender mailSender = new MailController.mailSender(senderName, senderMail, receivers, subject, mainContent);
+                        await mailSender.send();
 
                         result.result = true;
                         result.code = 200;
@@ -539,8 +566,8 @@ namespace HG_Subscribe.Controllers
                         member targetMember = db.member.Where(m => m.mID == CPL.cpMemberID).FirstOrDefault();
                         targetMember.mPassword = encryptedPass;
                         db.Entry(targetMember).State = System.Data.Entity.EntityState.Modified;
-
                         db.SaveChanges();
+
                         dbContextTransaction.Commit();
 
                         result.result = true;
