@@ -94,6 +94,8 @@ namespace HG_Subscribe.Controllers
                         string subject = "華冠投顧 ClickGO - 會員註冊完成通知";
                         string mainContent = "";
                         string initStr = string.Format("{0}/init/{1}", webHost,newMember.mRegisterToken);
+                        int passShowCharLanght = (int)Math.Floor((decimal)(password.Length / 3));
+                        string hiddenPass = password.Substring(0, passShowCharLanght) + new string('*', password.Length - passShowCharLanght * 2) + password.Substring(password.Length - passShowCharLanght);
 
                         StringBuilder SB = new StringBuilder();
                         SB.Append("<html lang = 'zh'>");
@@ -103,7 +105,7 @@ namespace HG_Subscribe.Controllers
                         SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
                         SB.Append("<div style='padding-top : 10px;'>以下是您的註冊資訊，請妥善保存並點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
                         SB.Append("<div style='padding-top : 10px;'>帳號：" + account + "</div>");
-                        SB.Append("<div style='padding-top : 10px;'>密碼：" + password + "</div>");
+                        SB.Append("<div style='padding-top : 10px;'>密碼：" + hiddenPass + "</div>");
                         SB.Append("<div style='padding-top : 10px;'>請點擊下方連結或\"啟用帳號\"按鈕啟用您的帳號</div>");
                         SB.Append("<div style='padding-top : 10px;'><a href='" + initStr + "'><h3>" + initStr + "</h3></a></div>");
                         SB.Append("<div style='padding-top : 10px;'><a href='" + initStr + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>啟用帳號</div></a></div>");
@@ -579,6 +581,8 @@ namespace HG_Subscribe.Controllers
                         string senderMail = "service.clickgo@hwa-guan.com.tw";
                         string subject = "華冠投顧 ClickGO - 會員重置密碼設定完成通知";
                         string mainContent = "";
+                        int passShowCharLanght = (int)Math.Floor((decimal)(newPassword.Length / 3));
+                        string hiddenPass = newPassword.Substring(0, passShowCharLanght) + new string('*', newPassword.Length - passShowCharLanght * 2) + newPassword.Substring(newPassword.Length - passShowCharLanght);
 
                         StringBuilder SB = new StringBuilder();
                         SB.Append("<html lang = 'zh'>");
@@ -586,7 +590,7 @@ namespace HG_Subscribe.Controllers
                         SB.Append("<body>");
                         SB.Append("<div>敬愛的會員 您好，<div>");
                         SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
-                        SB.Append("<div style='padding-top : 10px;'>您的密碼已經重新設定完成，您的新密碼是 " + newPassword + "請牢記並妥善保存。</div>");
+                        SB.Append("<div style='padding-top : 10px;'>您的密碼已經重新設定完成，您的新密碼是 " + hiddenPass + " 請牢記並妥善保存。</div>");
                         SB.Append("<div style='padding-top : 10px;'><a href='" + webHost + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>Click GO!!</div></a></div>");
                         SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
                         SB.Append("</body></html>");
