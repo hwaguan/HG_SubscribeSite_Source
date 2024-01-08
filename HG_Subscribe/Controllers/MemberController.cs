@@ -451,7 +451,7 @@ namespace HG_Subscribe.Controllers
                             string senderMail = "service.clickgo@hwa-guan.com.tw";
                             string subject = "華冠投顧 ClickGO - 會員重置密碼申請";
                             string mainContent = "";
-                            string resetStr = string.Format("{0}/resetMemberPassword/{1}", webHost, applyToken);
+                            string resetStr = string.Format("{0}/resetPassword/{1}", webHost, applyToken);
 
                             StringBuilder SB = new StringBuilder();
                             SB.Append("<html lang = 'zh'>");
