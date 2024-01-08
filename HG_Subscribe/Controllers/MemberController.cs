@@ -593,7 +593,7 @@ namespace HG_Subscribe.Controllers
                         mainContent = SB.ToString();
 
                         List<MailController.mailSender.mailReceiver> receivers = new List<MailController.mailSender.mailReceiver>();
-                        receivers.Add(new MailController.mailSender.mailReceiver(targetMember.mName, targetMember.mMail));
+                        receivers.Add(new MailController.mailSender.mailReceiver(targetMember.mName, cryptor.decryptData(targetMember.mMail)));
 
                         MailController.mailSender mailSender = new MailController.mailSender(senderName, senderMail, receivers, subject, mainContent);
                         await mailSender.send();
