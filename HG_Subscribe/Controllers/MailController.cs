@@ -67,6 +67,7 @@ namespace HG_Subscribe.Controllers
                         result = await response.Content.ReadAsStringAsync();
 
                         MSL.slResult = result;
+                        MSL.slStatus = 1;
                         MSL.slFinishTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         db.Entry(MSL).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();

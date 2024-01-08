@@ -94,7 +94,6 @@ namespace HG_Subscribe.Controllers
                         string initStr = "http://192.168.1.26:8014/init/" + newMember.mRegisterToken;
 
                         StringBuilder SB = new StringBuilder();
-                        SB.Append("< !doctype html >");
                         SB.Append("<html lang = 'zh'>");
                         SB.Append("<head><meta charset=\"UTF-8\" /></head>");
                         SB.Append("<body>");
