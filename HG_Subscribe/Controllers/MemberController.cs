@@ -419,73 +419,78 @@ namespace HG_Subscribe.Controllers
             if (!RC.result) return JsonConvert.SerializeObject(RC);
             Cryptor.apiResultObj result = new Cryptor.apiResultObj();
 
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                using (db = new ClikGoEntities())
+                try
                 {
-                    string encryptMail = cryptor.encryptData(mMail);
-                    string limitDate = DateTime.Now.ToString("yyyy-MM");
-                    member targetMember = db.member.Where(m => m.mMail == encryptMail).FirstOrDefault();
-
-                    int applyCount = db.changePassLog.Where(c => c.cpMemberID == targetMember.mID && c.cpApplyDate.StartsWith(limitDate)).Count();
-
-                    if (applyCount < 3)
+                    using (db = new ClikGoEntities())
                     {
-                        changePassLog CPL = new changePassLog();
-                        string applyToken = getOTP(1);
+                        string encryptMail = cryptor.encryptData(mMail);
+                        string limitDate = DateTime.Now.ToString("yyyy-MM");
+                        member targetMember = db.member.Where(m => m.mMail == encryptMail).FirstOrDefault();
 
-                        CPL.cpMemberID = targetMember.mID;
-                        CPL.cpMemberName = targetMember.mName;
-                        CPL.cpMemberOldPassword = targetMember.mPassword;
-                        CPL.cpToken = applyToken;
-                        CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        int applyCount = db.changePassLog.Where(c => c.cpMemberID == targetMember.mID && c.cpApplyDate.StartsWith(limitDate)).Count();
 
-                        db.changePassLog.Add(CPL);
-                        db.SaveChanges();
+                        if (applyCount < 3)
+                        {
+                            changePassLog CPL = new changePassLog();
+                            string applyToken = getOTP(1);
 
-                        string senderName = "華冠投顧 ColickGo";
-                        string senderMail = "service.clickgo@hwa-guan.com.tw";
-                        string subject = "華冠投顧 ClickGO - 會員重置密碼申請";
-                        string mainContent = "";
-                        string resitStr = "http://192.168.1.26:8014/resetPassword/" + applyToken;
+                            CPL.cpMemberID = targetMember.mID;
+                            CPL.cpMemberName = targetMember.mName;
+                            CPL.cpMemberOldPassword = targetMember.mPassword;
+                            CPL.cpToken = applyToken;
+                            CPL.cpApplyDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        StringBuilder SB = new StringBuilder();
-                        SB.Append("<html lang = 'zh'>");
-                        SB.Append("<head><meta charset=\"UTF-8\" /></head>");
-                        SB.Append("<body>");
-                        SB.Append("<div>敬愛的會員 您好，<div>");
-                        SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
-                        SB.Append("<div style='padding-top : 10px;'>我們已經收到您所提出的重置密碼申請，請您點擊以下連結或\"立即重置\"按鈕，進行新密碼的設置。</div>");
-                        SB.Append("<div style='padding-top : 10px;'><a href='" + resitStr + "'><h3>" + resitStr + "</h3></a></div>");
-                        SB.Append("<div style='padding-top : 10px;'><a href='" + resitStr + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>立即重置</div></a></div>");
-                        SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
-                        SB.Append("</body></html>");
-                        mainContent = SB.ToString();
+                            db.changePassLog.Add(CPL);
+                            db.SaveChanges();
 
-                        List<MailController.mailSender.mailReceiver> receivers = new List<MailController.mailSender.mailReceiver>();
-                        receivers.Add(new MailController.mailSender.mailReceiver(targetMember.mName, targetMember.mMail));
+                            string senderName = "華冠投顧 ColickGo";
+                            string senderMail = "service.clickgo@hwa-guan.com.tw";
+                            string subject = "華冠投顧 ClickGO - 會員重置密碼申請";
+                            string mainContent = "";
+                            string resetStr = "http://192.168.1.26:8014/resetPassword/" + applyToken;
 
+                            StringBuilder SB = new StringBuilder();
+                            SB.Append("<html lang = 'zh'>");
+                            SB.Append("<head><meta charset=\"UTF-8\" /></head>");
+                            SB.Append("<body>");
+                            SB.Append("<div>敬愛的會員 您好，<div>");
+                            SB.Append("<div style='padding-top : 20px;'>感謝您對於華冠投顧的支持與愛護，並加入成為本站的會員</div>");
+                            SB.Append("<div style='padding-top : 10px;'>我們已經收到您所提出的重置密碼申請，請您點擊以下連結或\"立即重置\"按鈕，進行新密碼的設置。</div>");
+                            SB.Append("<div style='padding-top : 10px;'><a href='" + resetStr + "'><h3>" + resetStr + "</h3></a></div>");
+                            SB.Append("<div style='padding-top : 10px;'><a href='" + resetStr + "'><div style='width : 200px; padding:20px 40px; margin: 10px auto; font-size : 36px; font-weight : bold; text-align : justify; text-align-last : justify; color : rgb(255, 255, 255); background : rgb(25, 135, 84); border-radious : 10px;'>立即重置</div></a></div>");
+                            SB.Append("<div style='padding-top : 10px;'>華冠投顧 祝您有美好的一天</div>");
+                            SB.Append("</body></html>");
+                            mainContent = SB.ToString();
 
-                        MailController.mailSender mailSender = new MailController.mailSender(senderName, senderMail, receivers, subject, mainContent);
-                        await mailSender.send();
+                            List<MailController.mailSender.mailReceiver> receivers = new List<MailController.mailSender.mailReceiver>();
+                            receivers.Add(new MailController.mailSender.mailReceiver(targetMember.mName, mMail));
 
-                        result.result = true;
-                        result.code = 200;
-                        result.message = true;
+                            MailController.mailSender mailSender = new MailController.mailSender(senderName, senderMail, receivers, subject, mainContent);
+                            await mailSender.send();
+
+                            result.result = true;
+                            result.code = 200;
+                            result.message = true;
+                        }
+                        else
+                        {
+                            result.result = true;
+                            result.code = 666;
+                            result.message = false;
+                        }
                     }
-                    else
-                    {
-                        result.result = true;
-                        result.code = 666;
-                        result.message = false;
-                    }
+
+                    dbContextTransaction.Commit();
                 }
-            }
-            catch (Exception e)
-            {
-                result.result = false;
-                result.code = 500;
-                result.message = e.Message;
+                catch (Exception e)
+                {
+                    dbContextTransaction.Rollback();
+                    result.result = false;
+                    result.code = 500;
+                    result.message = e.Message;
+                }
             }
 
             return JsonConvert.SerializeObject(result);
